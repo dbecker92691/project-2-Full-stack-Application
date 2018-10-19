@@ -7,12 +7,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Edit <%=happy._id%>'s Info</h1>
-        <form action='/happyhours/<%=happy._id%>?_method=PUT' method="POST">
-            Restaurant: <input type='text' name='restaurant'><br/>
-            Time: <input type='text' name='time'><br/>
-            Neighborhood: <input type='text' name='neighborhood'><br/>
-            <input type='submit' value="Submit changes">
-        </form>
+     <header>
+        <%- include('../partials/navbar') %>
+   </header> 
+   <main>
+        <h1>Edit <%=happy.restaurant%> Info</h1>
+            <form action='/happyhours/<%=happy._id%>?_method=PUT' method="POST">
+                Restaurant: <input type='text' value='<%=happy.restaurant%>' name='restaurant'><br/>
+                Time: <input type='text' value='<%=happy.time%>' name='time'><br/>
+                Neighborhood: <input type='text' value='<%=happy.neighborhood%>' name='neighborhood'><br/>
+                <input type='submit' value="Submit changes">
+            </form>
+    </main>
 </body>
 </html> 

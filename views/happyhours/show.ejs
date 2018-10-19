@@ -8,23 +8,19 @@
 </head>
 <body>
     <header>
-        <nav>
-          <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/happyhours">Happy Hour Index</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <h1>
-        <%=happy.restaurant%>
-      </h1>
-      <p>Time: <%= happy.time %></p><br/>
-      <p>Neighborhood: <%= happy.neighborhood %></p><br/>
-     <a href='/happyhours/<%=happy._id%>/edit'>Edit</a> 
+       <%- include('../partials/navbar') %>
+    </header>
+    <main>
+        <h1>
+            <%=happy.restaurant%>
+        </h1>
+            <p>Time: <%= happy.time %></p><br/>
+            <p>Neighborhood: <%= happy.neighborhood %></p><br/>
+            <a href='/happyhours/<%=happy._id%>/edit'>Edit</a>
+        <form action="/happyhours/<%=happy._id%>?_method=DELETE" method="POST">
+            <input type='submit' value='Delete'>
+        </form>
+    </main>
 </body>
 </html>
 
