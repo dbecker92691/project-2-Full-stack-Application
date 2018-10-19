@@ -5,13 +5,14 @@ const methodOverride = require('method-override');
 
 require('./db/db');
 
-const HappyHoursController = require('./contollers/happyhours');
-const ReviewsController = require('./contollers/reviewmodel');
-const UsersController = require('./contollers/users')
+const HappyHoursController = require('./controllers/happyhours');
+const ReviewsController = require('./controllers/reviewcontroller');
+const UsersController = require('./controllers/users')
 
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
+
 app.use('/happyhours', HappyHoursController);
 app.use('/reviews', ReviewsController);
 app.use('/users', UsersController);
