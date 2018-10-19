@@ -1,11 +1,10 @@
 {
-  "name": "project-2-full-stack-app",
+  "name": "project-2-full-stack-application",
   "version": "1.0.0",
-  "description": "",
+  "description": "![Denver HH Wireframe](images/wireframe.png)",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
