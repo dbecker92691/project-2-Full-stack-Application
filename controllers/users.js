@@ -6,7 +6,10 @@ const User = require('../models/usermodel');
 router.get('/', async(req, res) => {
     try{
         const getUsers = await User.find({});
-        res.render('users/index.ejs')
+        res.render('users/index.ejs', {
+            users: User
+        })
+        
     } catch(err) {
         res.send(err)
     }

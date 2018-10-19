@@ -75,6 +75,20 @@ router.get('/:id', async (req, res) => {
 });
 
 
+// delete
+
+router.delete('/:id', async (req, res) => {
+    try{
+        HappyHour.findByIdAndDelete(req.params.id, req.body, () => {
+            res.redirect('/happyhours')
+        });
+    }catch(err){
+        res.send(err)
+    }
+
+});
+
+
 
 
 

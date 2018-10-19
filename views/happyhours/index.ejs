@@ -6,22 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-    <h1>This is the happy hours page</h1>
+    
 <body>
-    <h2>HH list:</h2>
-        <ul>
-                <% for(let i = 0; i < happy.length; i++) { %>
-                    <li>
-                        <a href='/happyhours/<%=happy[i]._id%>'>
-                            <%=happy[i].restaurant%>
-                        </a>
-                    </li>
+   <header>
+        <%- include('../partials/navbar') %>
+   </header> 
+   <main>
+        <h2>HH list:</h2>
+            <ul>
+                    <% for(let i = 0; i < happy.length; i++) { %>
+                        <li>
+                            <a href='/happyhours/<%=happy[i]._id%>'>
+                                <%=happy[i].restaurant%>
+                            </a>
+                        </li>
 
-               <% } %>
-            
-        </ul>
+                <% } %>
+                
+            </ul>
+    </main>     
     <a href="happyhours/new">
         New
     </a> 
+
 </body>
 </html>
