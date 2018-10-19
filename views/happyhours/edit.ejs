@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit <%=happy._id%>'s Info</h1>
+        <form action='/happyhours/<%=happy._id%>?_method=PUT' method="POST">
+            Restaurant: <input type='text' name='restaurant'><br/>
+            Time: <input type='text' name='time'><br/>
+            Neighborhood: <input type='text' name='neighborhood'><br/>
+            <input type='submit' value="Submit changes">
+        </form>
+</body>
+</html> 
