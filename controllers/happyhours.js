@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const HappyHour = require('../models/hhmodel');
 
 
@@ -39,13 +38,11 @@ router.put('/', async (req, res) => {
 });
 
 // edit
-
 router.get('/:id/edit', async (req, res) => {
     try {
         const foundHappy = await HappyHour.findById(req.params.id)
         res.render('happyhours/edit.ejs', {
             happy: foundHappy
-            
         })
 
     } catch(err){
@@ -79,7 +76,6 @@ router.get('/:id', async (req, res) => {
 
 
 // delete
-
 router.delete('/:id', async (req, res) => {
     try{
         HappyHour.findByIdAndDelete(req.params.id, req.body, () => {
@@ -88,13 +84,7 @@ router.delete('/:id', async (req, res) => {
     }catch(err){
         res.send(err)
     }
-
 });
-
-
-
-
-
 
 
 

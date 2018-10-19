@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/usermodel');
+// const bcrypt = require('bcrypt');
 
 // /users/	GET	index
 router.get('/', async(req, res) => {
@@ -48,7 +49,11 @@ router.get('/:id', async(req, res) => {
 // /users/:id/edit	GET	edit
 router.get('/:id/edit', async(req, res) => {
     try{
-        const editUser =  await User.findOne(req.params.id);
+        const editUser =  await User.findOne(req.params.id, {
+            name: req.body.name,
+            password: req.body.password,
+            email: req.body.email
+        });
         res.render('users/edit.ejs', {
             users: editUser
         });
@@ -56,6 +61,7 @@ router.get('/:id/edit', async(req, res) => {
         res.send(err)
     }
 });
+
 
 // /users/:id	PATCH/PUT	update
 router.put('/:id', async(req, res) => {
