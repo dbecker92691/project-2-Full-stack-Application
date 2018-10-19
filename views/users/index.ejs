@@ -5,14 +5,14 @@
 </head>
 <body>
   <header>
-      <%- include('partials/navbar') %> 
+      <%- include('../partials/navbar') %> 
   </header>
 
   <main>
     <h1>Welcome to Denver Happy Hours</h1><br>
 
         <% for(let i = 0; i < users.length; i++) { %>
-            <a href="/users/<%=users[i]._id%>"><%=users[i].name %></a> 
+            <a href="/users/<%=users._id%>"><%=users.name %></a> 
         <% } %>
   </main>
 
