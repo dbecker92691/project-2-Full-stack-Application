@@ -9,16 +9,16 @@
   </header>
 
   <main>
-    <h1>View Your Profile</h1><br>
+    <h1>View Your Reviews</h1><br>
 
 <section>
-    <% for (let i = 0; i < users.length; i++) {%>
-        <li><a href="<%/users/<%=users[i]._id%>"><%= users[i].name %></a></li>
+    <% for (let i = 0; i < reviews.length; i++) {%>
+        <li><a href="<%/reviews/<%=reviews[i]._id%>"><%= reviews[i].name %></a></li>
      <% }%>
 </section>
 
 <section>
-    <form action="/users/<%=users._id%>?_method=DELETE" method="POST" >
+    <form action="/reviews/<%=reviews._id%>?_method=DELETE" method="POST" >
         <input type="submit" value="Delete Account">
     </form>
 </section>

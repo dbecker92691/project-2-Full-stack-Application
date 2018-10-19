@@ -6,7 +6,9 @@ const Review = require('../models/reviewmodel');
 router.get('/', async(req, res) => {
     try{
         const getReviews = await Review.find({});
-        res.render('reviews/index.ejs')
+        res.render('reviews/index.ejs', {
+            reviews: Review
+        });
     } catch(err) {
         res.send(err)
     }
