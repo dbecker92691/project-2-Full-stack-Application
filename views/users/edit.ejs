@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <header>
+      <%- include('partials/navbar') %> 
+  </header>
+
+  <main>
+    <h1>Edit Your Profile</h1><br>
+    <form action="/users/<%=users._id%>?_method=PUT" method="POST">
+    <input type="text" name="name" value="<%= users.name %>">
+    <input type="text" name="email" value="<%= users.email %>">
+    <input type="text" name="password" value="<%= users.password %>">
+    <button type="submit">Update Your Profile</button>
+  </form>
+  
+  </main>
+
+</body>
+</html>
