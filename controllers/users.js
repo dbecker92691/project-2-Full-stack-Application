@@ -49,7 +49,7 @@ router.get('/:id', async(req, res) => {
 // /users/:id/edit	GET	edit
 router.get('/:id/edit', async(req, res) => {
     try{
-        const editUser =  await User.findById(req.params.id);
+        const editUser =  await User.findOne(req.params.id);
         res.render('users/edit.ejs', {
             users: editUser
         });
