@@ -40,10 +40,12 @@ router.put('/', async (req, res) => {
 
 // edit
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', async (req, res) => {
     try {
+        const foundHappy = await HappyHour.findById(req.params.id)
         res.render('happyhours/edit.ejs', {
-            happy: HappyHour
+            happy: foundHappy
+            
         })
 
     } catch(err){
@@ -54,6 +56,7 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         await HappyHour.findByIdAndUpdate(req.params.id, req.body, () => {
+            console.log(req.body, 'the req.body')
             res.redirect('/happyhours')
         });
     }catch(err){
@@ -68,6 +71,20 @@ router.get('/:id', async (req, res) => {
         res.render('happyhours/show.ejs', {
             happy: findHappy
         })
+    }catch(err){
+        res.send(err)
+    }
+
+});
+
+
+// delete
+
+router.delete('/:id', async (req, res) => {
+    try{
+        HappyHour.findByIdAndDelete(req.params.id, req.body, () => {
+            res.redirect('/happyhours')
+        });
     }catch(err){
         res.send(err)
     }
