@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Review = require('../models/reviewmodel');
+const User = require('../models/usermodel');
+const bcrypt = require('bcrypt');
+
 
 // /reviews/	GET	index
 router.get('/', async(req, res) => {
@@ -25,13 +28,26 @@ router.get('/new', async(req, res) => {
 
 // /reviews	POST	create
 router.post('/', async(req, res) => {
-    try{
-        const createReview = await Review.create(req.body);
-        res.redirect('/reviews')
-    } catch(err) {
-        res.send(err)
-    }
-});
+    try {
+        if(!req.session.userId) {
+            res.render('user/new.ejs', {
+                message: "you must be logged in to do that"
+            })
+        } else {
+            const newReview = {
+                title: req.body.title,
+                body: req.body,
+                reviwer: req.session.userId
+            } catch(err) {
+                res.send(err)
+                }
+            }
+        }
+    });
+
+// const createReview = await Review.create(req.body);
+// res.redirect('/reviews')
+
 
 // /reviews/:id	GET	show
 router.get('/:id', async(req, res) => {

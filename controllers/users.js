@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/usermodel');
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 
 // /users/	GET	index
 router.get('/', async(req, res) => {
@@ -18,6 +18,7 @@ router.get('/', async(req, res) => {
 // /users/new	GET	new
 router.get('/new', async(req, res) => {
     try{
+        const newUser = await User.find({});
         res.render('users/new.ejs')
     } catch(err) {
         res.send(err)
@@ -27,11 +28,18 @@ router.get('/new', async(req, res) => {
 // /users	POST	create
 router.post('/', async(req, res) => {
     try{
-        const createUser = await User.create(req.body);
-        res.redirect('/users')
-    } catch(err) {
+        console.log(req.body);
+        const hashedPassword = await bcrypt.hash(req.body.password, 12);
+        console.log(hashedPassword)
+        const newUserObject = {
+            username: req.body.username,
+            password: hashedPassword
+    } 
+    const createUser = await User.create(newUserObject);
+    res.redirect('/users')
+        } catch(err) {
         res.send(err)
-    }
+    };
 });
 
 // /users/:id	GET	show
@@ -62,7 +70,6 @@ router.get('/:id/edit', async(req, res) => {
     }
 });
 
-
 // /users/:id	PATCH/PUT	update
 router.put('/:id', async(req, res) => {
     try{
@@ -73,14 +80,16 @@ router.put('/:id', async(req, res) => {
     }
 });
 
+
 // /users/:id	DELETE	destroy
 router.delete('/:id', async(req, res) => {
     try{
-        const deleteUser = await User.findOneAndDelete(req.params.id);
+        const deleteUser = await User.findOneAndDelete(req.params.id, req.body);
         res.redirect('/users')
     } catch(err) {
         res.send(err)
     }
 });
+
 
 module.exports = router;

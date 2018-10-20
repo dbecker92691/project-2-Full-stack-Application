@@ -8,13 +8,15 @@
 </head>
 <body>
         <header>
-           <%- include('../partials/navbar') %>
+            <% include ../partials/navbar %>
         </header>
 
     <h2>Create An Account</h2>
 
     <form action="/users" method="POST">
-        <input type="text" name="name">
+        <input type="text" name="name" value="name"><br>
+        <input type="text" name="email" value="email"><br>
+        <input type="password" name="password" value="password"><br>
             <button type="submit">Create Account</button>
     </form>
     
