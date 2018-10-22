@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Review = require('../models/reviewmodel');
+const User = require('../models/usermodel');
+const bcrypt = require('bcrypt');
+
 
 // /reviews/	GET	index
 router.get('/', async(req, res) => {
@@ -24,14 +27,39 @@ router.get('/new', async(req, res) => {
 });
 
 // /reviews	POST	create
-router.post('/', async(req, res) => {
-    try{
-        const createReview = await Review.create(req.body);
-        res.redirect('/reviews')
+router.post('/reviews', async(req, res) => {
+    try {
+        const user = await User.find({username: req.body.username});
+        const validLogin = await bcrypt.compare(req.body.password, user.password);
+        console.log(validLogin);
+        req.session.userId = user._id;
+        res.redirect('/reviews/index.ejs');
     } catch(err) {
         res.send(err)
     }
 });
+
+router.post('/', async(req, res) => {
+    try{
+        if(!req.session.userId) {
+            res.render('/user/new.ejs', {
+                message: "you must be logged in to do that"
+            })
+        } else {
+            const newReview = {
+                title: req.body.title,
+                body: req.body,
+                reviewer: req.session.userId
+            }
+        }
+    } catch(err) {
+        res.send(err)
+    }
+});
+
+// const createReview = await Review.create(req.body);
+// res.redirect('/reviews')
+
 
 // /reviews/:id	GET	show
 router.get('/:id', async(req, res) => {
