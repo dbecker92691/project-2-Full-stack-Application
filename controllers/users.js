@@ -9,7 +9,7 @@ const requireLogin = require('../middleware/requireLogin')
 router.get('/',requireLogin, async(req, res) => {
     try{
         const getUsers = await User.find({});
-        const currentUser = await Users.findById(req.session.userId)
+        const currentUser = await User.findById(req.session.userId)
         res.render('users/index.ejs', {
             users: User,
             user: currentUser
@@ -21,7 +21,7 @@ router.get('/',requireLogin, async(req, res) => {
 });
 
 //edit
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit',requireLogin, async (req, res) => {
     try{
         const editUser = await User.findById(req.params.id);
         const currentUser = await Users.findById(req.session.userId)
@@ -36,7 +36,7 @@ router.get('/:id/edit', async (req, res) => {
  });
 
 // /users/new	GET	new
-router.get('/new', async(req, res) => {
+router.get('/new',requireLogin, async(req, res) => {
     try{
         // const newUser = await User.find({});
         res.render('users/new.ejs', {
@@ -48,7 +48,7 @@ router.get('/new', async(req, res) => {
 });
 
 // /users	POST	create
-router.post('/new', async(req, res) => {
+router.post('/new',requireLogin, async(req, res) => {
     try{
         console.log(req.body);
         const hashedPassword = await bcrypt.hash(req.body.password, 12);
@@ -66,7 +66,7 @@ router.post('/new', async(req, res) => {
 });
 
 // /users/:id	PATCH/PUT	update
-router.put('/:id', async(req, res) => {
+router.put('/:id',requireLogin, async(req, res) => {
     try{
         const updateUser = await User.findByIdAndUpdate(req.params.id, req.body);
         res.redirect('/users')
@@ -77,7 +77,7 @@ router.put('/:id', async(req, res) => {
 
 
 //delete
-router.delete('/:id', async(req, res) => {
+router.delete('/:id',requireLogin, async(req, res) => {
     try{
         const deleteUser = await User.findOneAndDelete(req.params.id, req.body);
         res.redirect('/users')
