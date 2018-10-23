@@ -36,11 +36,11 @@ router.get('/new', async(req, res) => {
 
 
 // /reviews	POST	create
-router.put('/', async (req, res) => {
+router.post('/', async (req, res) => {
     try{
-        await Review.create(req.body, () => {
-            res.redirect('/reviews')
-        })
+        console.log(req.body, "this is my wrek dat body")
+        await Review.create(req.body);
+        res.redirect('/reviews')
 
     }catch(err){
         res.send(err)
