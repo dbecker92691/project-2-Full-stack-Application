@@ -26,12 +26,13 @@ app.use('/users', UsersController, express.static('css'));
 app.use('/', express.static('css'));
 const requireLogin = (req, res, next) => {
     if(!req.session.user){
-        res.redirect('/users')
+        res.redirect('/users/new.ejs')
     } else {
         next();
     }
-}
-    app.get('/users', requireLogin, (req, res) => {
+};
+
+app.get('/users', requireLogin, (req, res) => {
         res.render('index.ejs')
 });
 
