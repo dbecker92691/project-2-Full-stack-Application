@@ -4,15 +4,17 @@ const Review = require('../models/reviewmodel');
 const User = require('../models/usermodel');
 const bcrypt = require('bcrypt');
 const requireLogin = require('../middleware/requireLogin')
-
+const Happy = require('../models/hhmodel')
 
 
 // /reviews/	GET	index
 router.get('/',requireLogin, async(req, res) => {
     try{
-        const getReviews = await Review.find({});
+        const happy = await Happy.find({});
+        // reviews is the data Review is the model
+        // don't send the model send data
         res.render('reviews/index.ejs', {
-            reviews: Review
+            happy: happy 
         });
     } catch(err) {
         res.send(err)
@@ -22,42 +24,48 @@ router.get('/',requireLogin, async(req, res) => {
 // /reviews/new	GET	new
 router.get('/new',requireLogin, async(req, res) => {
     try{
-        res.render('reviews/new.ejs')
+        const happy = await Happy.find({});
+        const review = await Review.find({});
+        res.render('reviews/new.ejs', {
+            happy: happy,
+            review: review
+        })
     } catch(err) {
         res.send(err)
     }
 });
+
 
 // /reviews	POST	create
-router.post('/reviews',requireLogin, async(req, res) => {
-    try {
-        const user = await User.find({username: req.body.username});
-        const validLogin = await bcrypt.compare(req.body.password, user.password);
-        console.log(validLogin);
-        req.session.userId = user._id;
-        res.redirect('/reviews/index.ejs');
-    } catch(err) {
+router.post('/', async (req, res) => {
+    try{
+        console.log(req.body, "this is my wrek dat body")
+        await Review.create(req.body);
+        res.redirect('/reviews')
+
+    }catch(err){
         res.send(err)
     }
+    
 });
 
-router.post('/',requireLogin, async(req, res) => {
-    try{
-        if(!req.session.userId) {
-            res.render('/user/new.ejs', {
-                message: "you must be logged in to do that"
-            })
-        } else {
-            const newReview = {
-                title: req.body.title,
-                body: req.body,
-                reviewer: req.session.userId
-            }
-        }
-    } catch(err) {
-        res.send(err)
-    }
-});
+// router.post('/', async(req, res) => {
+//     try{
+//         if(!req.session.userId) {
+//             res.render('/user/new.ejs', {
+//                 message: "you must be logged in to do that"
+//             })
+//         } else {
+//             const newReview = {
+//                 title: req.body.title,
+//                 body: req.body,
+//                 reviewer: req.session.userId
+//             }
+//         }
+//     } catch(err) {
+//         res.send(err)
+//     }
+// });
 
 // const createReview = await Review.create(req.body);
 // res.redirect('/reviews')

@@ -14,6 +14,7 @@ router.get('/',requireLogin, async(req, res) => {
             users: User,
             user: currentUser
         })
+        
     } catch(err) {
         res.send(err)
     }
