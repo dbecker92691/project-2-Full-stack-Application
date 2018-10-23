@@ -21,7 +21,7 @@ router.get('/',requireLogin, async(req, res) => {
 });
 
 //edit
-router.get('/:id/edit',requireLogin, async (req, res) => {
+router.get('/edit',requireLogin, async (req, res) => {
     try{
         const editUser = await User.findById(req.params.id);
         const currentUser = await Users.findById(req.session.userId)
