@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+<% include ../partials/csshead %>
 </head>
 <body>
   <header>
@@ -10,12 +9,22 @@
   </header>
 
   <main>
-    <h1>Welcome to Denver Happy Hours :: REVIEWS </h1><br>
-
-        <% for(let i = 0; i < reviews.length; i++) { %>
-            <a href="/reviews/<%=reviews._id%>"><%=reviews.name %></a> 
-        <% } %>
+    <h1>This is our Reviews Page </h1><br>
+     
   </main>
+  <body>
+    <a href='reviews/new'>New Review</a>
+    <% for(let i = 0; i < reviews.length; i++) { %>
+      <ul>
+          <li href='<%=reviews[i]._id%>'>
+            <%=reviews[i].happyHour%><br/>
+            <%=reviews[i].body%>
+          </li>
+      </ul>
+   <% } %>
+
+
+  </body>
 
 </body>
 </html>

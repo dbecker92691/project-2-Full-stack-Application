@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <% include ../partials/csshead %>
+</head>
 
 <body>
-   <head>
-        <%- include('../partials/navbar') %>
+   <header>
+   <% include ../partials/navbar %>
         <h1>New Happy Hour</h1>
-   </head> 
+   </header> 
    <main>
-        <form action="/happyhours?_method=PUT" method="POST">
-                Restaurant: <input type="text" name="restaurant"><br/>
+        <form action="/happyhours/<%=happy._id%>?_method=PUT" method="POST">
+                Restaurant: <input type='text' name='restaurant'><br/>
                 Time: <input type="text" name="time"><br/>
                 Neighborhood: <input type="text" name="neighborhood"><br/>
             <input type="submit" value="Create Happy Hour">

@@ -4,15 +4,17 @@ const Review = require('../models/reviewmodel');
 const User = require('../models/usermodel');
 const bcrypt = require('bcrypt');
 const requireLogin = require('../middleware/requireLogin')
-
+const Happy = require('../models/hhmodel')
 
 
 // /reviews/	GET	index
 router.get('/',requireLogin, async(req, res) => {
     try{
-        const getReviews = await Review.find({});
+        const reviews = await Review.find({});
+        // reviews is the data Review is the model
+        // don't send the model send data
         res.render('reviews/index.ejs', {
-            reviews: Review
+            reviews: reviews 
         });
     } catch(err) {
         res.send(err)
@@ -22,11 +24,17 @@ router.get('/',requireLogin, async(req, res) => {
 // /reviews/new	GET	new
 router.get('/new',requireLogin, async(req, res) => {
     try{
-        res.render('reviews/new.ejs')
+        const happy = await Happy.find({});
+        const review = await Review.find({});
+        res.render('reviews/new.ejs', {
+            happy: happy,
+            review: review
+        })
     } catch(err) {
         res.send(err)
     }
 });
+
 
 // /reviews	POST	create
 router.post('/reviews',requireLogin, async(req, res) => {
@@ -43,21 +51,33 @@ router.post('/reviews',requireLogin, async(req, res) => {
 
 router.post('/',requireLogin, async(req, res) => {
     try{
-        if(!req.session.userId) {
-            res.render('/user/new.ejs', {
-                message: "you must be logged in to do that"
-            })
-        } else {
-            const newReview = {
-                title: req.body.title,
-                body: req.body,
-                reviewer: req.session.userId
-            }
-        }
-    } catch(err) {
+        await Review.create(req.body, () => {
+            res.redirect('/reviews')
+        })
+
+    }catch(err){
         res.send(err)
     }
+    
 });
+
+// router.post('/', async(req, res) => {
+//     try{
+//         if(!req.session.userId) {
+//             res.render('/user/new.ejs', {
+//                 message: "you must be logged in to do that"
+//             })
+//         } else {
+//             const newReview = {
+//                 title: req.body.title,
+//                 body: req.body,
+//                 reviewer: req.session.userId
+//             }
+//         }
+//     } catch(err) {
+//         res.send(err)
+//     }
+// });
 
 // const createReview = await Review.create(req.body);
 // res.redirect('/reviews')
