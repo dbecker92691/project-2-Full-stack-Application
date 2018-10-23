@@ -11,13 +11,13 @@
     <h2>Write a Review</h2>
 
 
-    <form action="/reviews/<%=review._id%>?_method=PUT" method="POST">
+    <form action="/reviews/<%=review._id%>" method="POST">
         <label>
             Restaurants
         </label><br/>
             <select name='happyId'>
                 <% for(let i = 0; i < happy.length; i++) { %>
-                    <option value='happy[i].id'>
+                    <option value='<%=happy[i]._id%>'>
                         <%= happy[i].restaurant %>
                     </option>
                 <% } %>
