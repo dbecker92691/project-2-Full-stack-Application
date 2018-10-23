@@ -10,6 +10,7 @@ router.get('/', async(req, res) => {
         res.render('users/index.ejs', {
             users: User
         })
+        
     } catch(err) {
         res.send(err)
     }

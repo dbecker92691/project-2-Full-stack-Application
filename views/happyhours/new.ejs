@@ -13,8 +13,8 @@
         <h1>New Happy Hour</h1>
    </head> 
    <main>
-        <form action="/happyhours?_method=PUT" method="POST">
-                Restaurant: <input type="text" name="restaurant"><br/>
+        <form action="/happyhours/<%=happy._id%>?_method=PUT" method="POST">
+                Restaurant: <input type='text' name='restaurant'><br/>
                 Time: <input type="text" name="time"><br/>
                 Neighborhood: <input type="text" name="neighborhood"><br/>
             <input type="submit" value="Create Happy Hour">

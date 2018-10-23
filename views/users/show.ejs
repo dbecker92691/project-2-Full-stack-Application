@@ -13,6 +13,12 @@
   <main>
     <h1>View Your Profile</h1><br>
 
+<section>
+    <form action="/users/<%=users._id%>?_method=DELETE" method="POST" >
+        <input type="submit" value="Delete Account">
+    </form>
+    <a href='../reviews/new.ejs'>New Review</a>
+</section>
 
 
   </main>
