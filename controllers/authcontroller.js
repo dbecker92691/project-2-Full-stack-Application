@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/usermodel');
+const Review = require('../models/reviewmodel')
 const bcrypt = require('bcrypt');
 
-
+// LOGIN
 router.post('/login', async(req, res) => {
     try {
         console.log(req.body);
@@ -23,10 +24,18 @@ router.post('/login', async(req, res) => {
     }
 })
 
+// REGISTER
+
+
+// LOGOUT
 router.get('/logout', (req, res) => {
     req.session.destroy(() => {
         res.redirect('/')
     })
 })
+
+
+
+
 
 module.exports = router;
