@@ -9,6 +9,7 @@ const authController     = require('./controllers/authcontroller');
 
 
 
+
 require('./db/db');
 
 const HappyHoursController = require('./controllers/happyhours');
@@ -36,10 +37,7 @@ app.use('/', express.static('css'));
 app.use('/auth', authController);
 
 
-app.get('/users', requireLogin, (req, res) => {
-        res.render('index.ejs')
-});
-
+//landing
 app.get('/', (req, res) => {
     res.render('index.ejs')
 })
