@@ -7,15 +7,17 @@
 
   <h1>Register</h1> <small><%=message%></small>
   <form action="/auth/register" method="POST">
-    <input type="text" name="username">
-    <input type="password" name="password">
+    Name:<input type="text" name="name">
+    Email:<input type="text" name="email">
+    Password:<input type="password" name="password">
     <button type="submit">Register</button>
   </form>
 
   <h1>Login</h1> <small><%=message%></small>
   <form action="/auth/login" method="POST">
-    <input type="text" name="username">
-    <input type="password" name="password">
+    Name:<input type="text" name="name">
+    Email:<input type="text" name="email">
+    Password:<input type="password" name="password">
     <button type="submit">Login</button>
   </form>
 
