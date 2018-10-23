@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const HappyHour = require('../models/hhmodel');
+const Reveiw = require('../models/reviewmodel');
 
 
 // index route
@@ -64,9 +65,11 @@ router.put('/:id', async (req, res) => {
 // show route
 router.get('/:id', async (req, res) => {
     try{
+        //const foundReviews = await Reveiw.find({});
         const findHappy = await HappyHour.findById(req.params.id)
         res.render('happyhours/show.ejs', {
-            happy: findHappy
+            happy: findHappy,
+            //.review: foundReviews
         })
     }catch(err){
         res.send(err)

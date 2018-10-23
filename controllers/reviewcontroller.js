@@ -9,11 +9,11 @@ const Happy = require('../models/hhmodel')
 // /reviews/	GET	index
 router.get('/', async(req, res) => {
     try{
-        const reviews = await Review.find({});
+        const happy = await Happy.find({});
         // reviews is the data Review is the model
         // don't send the model send data
         res.render('reviews/index.ejs', {
-            reviews: reviews 
+            happy: happy 
         });
     } catch(err) {
         res.send(err)
