@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+<% include ../partials/csshead %>
 </head>
 <body>
         <header>
@@ -14,10 +10,23 @@
 
     <h2>Write a Review</h2>
 
-    <form action="/reviws" method="POST">
-        <input type="text" name="title">
-        <input type="text" name="review">
-            <button type="submit">Create Account</button>
+
+    <form action="/reviews/<%=review._id%>?_method=PUT" method="POST">
+        <label>
+            Restaurants
+        </label><br/>
+            <select name='happyId'>
+                <% for(let i = 0; i < happy.length; i++) { %>
+                    <option value='happy[i].id'>
+                        <%= happy[i].restaurant %>
+                    </option>
+                <% } %>
+            </select><br/>
+        <label>
+            Review
+        </label><br/>
+            <input type ="text" name='reveiw'><br/>
+        <button type="submit">Submit Review</button>
     </form>
     
 </body>
