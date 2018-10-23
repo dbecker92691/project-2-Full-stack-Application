@@ -14,11 +14,12 @@
   </main>
   <body>
     <a href='reviews/new'>New Review</a>
-    <% for(let i = 0; i < reviews.length; i++) { %>
+    <% for(let i = 0; i < happy.length; i++) { %>
       <ul>
-          <li href='<%=reviews[i]._id%>'>
-            <%=reviews[i].happyHour%><br/>
-            <%=reviews[i].body%>
+          <li>
+            <a href='reviews/<%=reviews._id%>'>
+              <%=happy[i].restaurant%>
+            </a>
           </li>
       </ul>
    <% } %>

@@ -10,11 +10,11 @@ const Happy = require('../models/hhmodel')
 // /reviews/	GET	index
 router.get('/',requireLogin, async(req, res) => {
     try{
-        const reviews = await Review.find({});
+        const happy = await Happy.find({});
         // reviews is the data Review is the model
         // don't send the model send data
         res.render('reviews/index.ejs', {
-            reviews: reviews 
+            happy: happy 
         });
     } catch(err) {
         res.send(err)
@@ -37,23 +37,11 @@ router.get('/new',requireLogin, async(req, res) => {
 
 
 // /reviews	POST	create
-router.post('/reviews',requireLogin, async(req, res) => {
-    try {
-        const user = await User.find({username: req.body.username});
-        const validLogin = await bcrypt.compare(req.body.password, user.password);
-        console.log(validLogin);
-        req.session.userId = user._id;
-        res.redirect('/reviews/index.ejs');
-    } catch(err) {
-        res.send(err)
-    }
-});
-
-router.post('/',requireLogin, async(req, res) => {
+router.post('/', async (req, res) => {
     try{
-        await Review.create(req.body, () => {
-            res.redirect('/reviews')
-        })
+        console.log(req.body, "this is my wrek dat body")
+        await Review.create(req.body);
+        res.redirect('/reviews')
 
     }catch(err){
         res.send(err)
