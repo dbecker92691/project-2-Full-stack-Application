@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const session = require('express-session') 
 const requireLogin = require('./middleware/requireLogin')
+const authController     = require('./controllers/authcontroller');
+
 
 
 require('./db/db');
@@ -12,6 +14,7 @@ require('./db/db');
 const HappyHoursController = require('./controllers/happyhours');
 const ReviewsController = require('./controllers/reviewcontroller');
 const UsersController = require('./controllers/users')
+
 
 app.use(morgan('short'));
 app.use(bodyParser.urlencoded({extended: false}));
@@ -30,6 +33,8 @@ app.use('/happyhours', HappyHoursController, express.static('css'));
 app.use('/reviews', ReviewsController, express.static('css'));
 app.use('/users', UsersController, express.static('css'));
 app.use('/', express.static('css'));
+app.use('/auth', authController);
+
 
 app.get('/users', requireLogin, (req, res) => {
         res.render('index.ejs')
