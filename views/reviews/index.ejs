@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+<% include ../partials/csshead %>
 </head>
 <body>
   <header>
@@ -17,7 +16,10 @@
     <a href='reviews/new'>New Review</a>
     <% for(let i = 0; i < reviews.length; i++) { %>
       <ul>
-          <li href='<%=reviews[i]._id%>'><%=reviews[i]._id%></li>
+          <li href='<%=reviews[i]._id%>'>
+            <%=reviews[i].happyHour%><br/>
+            <%=reviews[i].body%>
+          </li>
       </ul>
    <% } %>
 

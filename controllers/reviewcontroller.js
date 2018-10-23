@@ -24,8 +24,10 @@ router.get('/', async(req, res) => {
 router.get('/new', async(req, res) => {
     try{
         const happy = await Happy.find({});
+        const review = await Review.find({});
         res.render('reviews/new.ejs', {
-            happy: happy
+            happy: happy,
+            review: review
         })
     } catch(err) {
         res.send(err)

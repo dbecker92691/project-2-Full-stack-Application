@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
+<% include ../partials/csshead %>
 </head> 
 <body>
   <header>
-    <%- include('../partials/navbar') %> 
+  <% include ../partials/navbar %>
 
   </header>
 
   <main>
     <h1>View Your Profile</h1><br>
-
 
 <section>
     <form action="/users/<%=users._id%>?_method=DELETE" method="POST" >
