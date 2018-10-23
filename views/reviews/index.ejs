@@ -10,12 +10,19 @@
   </header>
 
   <main>
-    <h1>Welcome to Denver Happy Hours :: REVIEWS </h1><br>
-
-        <% for(let i = 0; i < reviews.length; i++) { %>
-            <a href="/reviews/<%=reviews._id%>"><%=reviews.name %></a> 
-        <% } %>
+    <h1>This is our Reviews Page </h1><br>
+     
   </main>
+  <body>
+    <a href='reviews/new'>New Review</a>
+    <% for(let i = 0; i < reviews.length; i++) { %>
+      <ul>
+          <li href='<%=reviews[i]._id%>'><%=reviews[i]._id%></li>
+      </ul>
+   <% } %>
+
+
+  </body>
 
 </body>
 </html>
