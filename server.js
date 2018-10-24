@@ -43,11 +43,10 @@ store.on('error', function(error) {
     assert.ok(false);
 });
   
-
-app.use('/happyhours', HappyHoursController, express.static('css'));
-app.use('/reviews', ReviewsController, express.static('css'));
-app.use('/users', UsersController, express.static('css'));
-app.use('/', express.static('css'));
+app.use('/happyhours', HappyHoursController, express.static('public'));
+app.use('/reviews', ReviewsController, express.static('public'));
+app.use('/users', UsersController, express.static('public'));
+app.use('/', express.static('public'));
 app.use('/auth', authController);
 
 
