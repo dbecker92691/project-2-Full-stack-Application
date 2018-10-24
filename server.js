@@ -26,10 +26,10 @@ app.use((req, res, next)=> {
     next();
   });
 
-app.use('/happyhours', HappyHoursController, express.static('css'));
-app.use('/reviews', ReviewsController, express.static('css'));
-app.use('/users', UsersController, express.static('css'));
-app.use('/', express.static('css'));
+app.use('/happyhours', HappyHoursController, express.static('public'));
+app.use('/reviews', ReviewsController, express.static('public'));
+app.use('/users', UsersController, express.static('public'));
+app.use('/', express.static('public'));
 
 app.get('/users', requireLogin, (req, res) => {
         res.render('index.ejs')
