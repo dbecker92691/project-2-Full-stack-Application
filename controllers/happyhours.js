@@ -66,10 +66,11 @@ router.put('/:id',requireLogin, async (req, res) => {
 // show route
 router.get('/:id',requireLogin, async (req, res) => {
     try{
-        //const foundReviews = await Reveiw.find({});
+        const reviews = await Review.find({});
         const findHappy = await HappyHour.findById(req.params.id)
         res.render('happyhours/show.ejs', {
             happy: findHappy,
+            reviews: reviews
             //.review: foundReviews
         })
     }catch(err){
