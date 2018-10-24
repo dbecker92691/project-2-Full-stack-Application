@@ -10,11 +10,13 @@ const Happy = require('../models/hhmodel')
 // /reviews/	GET	index
 router.get('/',requireLogin, async(req, res) => {
     try{
+        const review = await Review.find({});
         const happy = await Happy.find({});
         // reviews is the data Review is the model
         // don't send the model send data
         res.render('reviews/index.ejs', {
-            happy: happy 
+            happy: happy, 
+            reviews: review
         });
     } catch(err) {
         res.send(err)
@@ -42,6 +44,10 @@ router.post('/', async (req, res) => {
         console.log(req.body, "this is my wrek dat body")
         await Review.create(req.body);
         res.redirect('/reviews')
+        // upon creation assing the property to review
+        // review belongs to user.user_id
+
+    
 
     }catch(err){
         res.send(err)
