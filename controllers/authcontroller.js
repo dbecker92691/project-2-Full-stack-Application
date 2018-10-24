@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
                 console.log(`succesful login in as ${foundUser}`)
                 req.session.logged = true;
                 req.session.userId = foundUser._id
-                res.redirect('/users/')
+                res.redirect('/users')
             } else {
               req.session.message = 'Username or Password is Wrong';
               res.redirect('/auth/login')
