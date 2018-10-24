@@ -5,10 +5,12 @@ const bcrypt = require('bcrypt');
 const requireLogin = require('../middleware/requireLogin')
 
 
+
 // /users/	GET	index
 router.get('/',requireLogin, async(req, res) => {
     try{
         const getUsers = await User.find({});
+        console.log(req.session.userId)
         const currentUser = await User.findById(req.session.userId)
         res.render('users/index.ejs', {
             users: User,
@@ -23,14 +25,12 @@ router.get('/',requireLogin, async(req, res) => {
 //edit
 router.get('/edit',requireLogin, async (req, res) => {
     try{
-        const editUser = await User.findById(req.params.id);
-        const currentUser = await Users.findById(req.session.userId)
+        const currentUser = await User.findById(req.session.userId)
         res.render('users/edit.ejs',{
-            users: editUser,
             user: currentUser
             })
         } catch(err){
-            console.log('error')
+            console.log(err)
             res.send(err)
         }
  });
