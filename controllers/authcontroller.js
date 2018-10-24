@@ -3,6 +3,7 @@ const router  = express.Router();
 const User    = require('../models/usermodel');
 const bcrypt  = require('bcryptjs');
 const requireLogin = require('../middleware/requireLogin')
+const validate = require('../middleware/validate')
 
 
 //login
@@ -21,34 +22,38 @@ router.get('/register', (req, res)=>{
 
 //register post
 router.post('/register', async (req, res) => {
-  const password = req.body.password;
-  const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(2));
-  console.log('password was hashed')
-
-  const userEntry = {};
-  userEntry.name = req.body.name
-  userEntry.email = req.body.email;
-  userEntry.password = passwordHash;
-
-  const user = await User.create(userEntry);
-  console.log(`the user that was created is ${user}`);
-  req.session.logged   = true;
-  req.session.message  = '';
     try{
-        const foundUser = await User.findOne({name: req.body.name});
-        req.session.logged = true;
-        req.session.userId = foundUser._id;
+        const password = req.body.password;
+        const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(2));
+        console.log('password was hashed')
+
+        const userEntry = {};
+        userEntry.name = req.body.name
+        userEntry.email = req.body.email;
+        userEntry.password = passwordHash;
+
+        const user = await User.create(userEntry);
+        console.log(`the user that was created is ${user}`);
+        req.session.logged   = true;
+        req.session.message  = '';
+        req.session.userId = user._id;
         res.redirect('/users');
     }catch(err){
-        console.log(err)
-        res.send(err)
+        if(err.code == 11000){
+            req.session.message = "Username taken";
+            res.redirect('/auth/register');
+        }else{
+            console.log(err)
+            res.send(err)
+        }
+        
     }
 });
 
 //login
 router.post('/login', async (req, res) => {
   try {
-          const foundUser = await User.findOne({name: req.body.name});
+          const foundUser = await User.findOne({email: req.body.email});
           console.log(`login: the user that was found is ${foundUser}`)
           if(foundUser){
             if(bcrypt.compareSync(req.body.password, foundUser.password)){
