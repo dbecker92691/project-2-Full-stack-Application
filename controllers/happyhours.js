@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const HappyHour = require('../models/hhmodel');
+const Review = require('../models/reviewmodel');
+const requireLogin = require('../middleware/requireLogin')
 
 
 // index route
-router.get('/', (req, res) =>{
+router.get('/',requireLogin, (req, res) =>{
     HappyHour.find({}, (err, foundHappys) => {
         res.render('happyhours/index.ejs', {
             happy: foundHappys
@@ -13,7 +15,7 @@ router.get('/', (req, res) =>{
 });
 
 // new happy hour
-router.get('/new', async (req, res) => {
+router.get('/new',requireLogin, async (req, res) => {
     try{
        const allHappy = await HappyHour.find();
     res.render('happyhours/new.ejs', {
@@ -25,7 +27,7 @@ router.get('/new', async (req, res) => {
    
 });
 
-router.put('/', async (req, res) => {
+router.put('/',requireLogin, async (req, res) => {
     try{
         await HappyHour.create(req.body, () => {
             res.redirect('/happyhours')
@@ -38,7 +40,7 @@ router.put('/', async (req, res) => {
 });
 
 // edit
-router.get('/:id/edit', async (req, res) => {
+router.get('/:id/edit',requireLogin, async (req, res) => {
     try {
         const foundHappy = await HappyHour.findById(req.params.id)
         res.render('happyhours/edit.ejs', {
@@ -50,7 +52,7 @@ router.get('/:id/edit', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id',requireLogin, async (req, res) => {
     try {
         await HappyHour.findByIdAndUpdate(req.params.id, req.body, () => {
             console.log(req.body, 'the req.body')
@@ -62,11 +64,13 @@ router.put('/:id', async (req, res) => {
 })
 
 // show route
-router.get('/:id', async (req, res) => {
+router.get('/:id',requireLogin, async (req, res) => {
     try{
+        //const foundReviews = await Reveiw.find({});
         const findHappy = await HappyHour.findById(req.params.id)
         res.render('happyhours/show.ejs', {
-            happy: findHappy
+            happy: findHappy,
+            //.review: foundReviews
         })
     }catch(err){
         res.send(err)
@@ -76,7 +80,7 @@ router.get('/:id', async (req, res) => {
 
 
 // delete
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',requireLogin, async (req, res) => {
     try{
         HappyHour.findByIdAndDelete(req.params.id, req.body, () => {
             res.redirect('/happyhours')
@@ -85,10 +89,5 @@ router.delete('/:id', async (req, res) => {
         res.send(err)
     }
 });
-
-
-
-
-
 
 module.exports = router;

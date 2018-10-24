@@ -1,42 +1,66 @@
 const express = require('express');
 const router  = express.Router();
-const User    = require('../models/users');
+const User    = require('../models/usermodel');
 const bcrypt  = require('bcryptjs');
+const requireLogin = require('../middleware/requireLogin')
+const validate = require('../middleware/validate')
+
 
 //login
 router.get('/login', (req, res) => {
-  res.render('auth/auth.ejs', {
+  res.render('auth/login.ejs', {
     message: req.session.message
   });
 });
+
 //register
+router.get('/register', (req, res)=>{
+    res.render('auth/register.ejs', {
+        message:req.session.message
+    })
+})
+
+//register post
 router.post('/register', async (req, res) => {
-    console.log(req.body)
-  const password = req.body.password;
-  const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(2));
-  console.log(`${passwordHash} is hash, ${password} is password`)
+    try{
+        const password = req.body.password;
+        const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(2));
+        console.log('password was hashed')
 
-  const userEntry = {};
-  userEntry.username = req.body.username;
-  userEntry.password = passwordHash;
+        const userEntry = {};
+        userEntry.name = req.body.name
+        userEntry.email = req.body.email;
+        userEntry.password = passwordHash;
 
-  const user = await User.create(userEntry);
-  console.log(`the user info is ${user}`);
-  req.session.logged   = true;
-  req.session.message  = '';
-  res.redirect('/auth/login');
+        const user = await User.create(userEntry);
+        console.log(`the user that was created is ${user}`);
+        req.session.logged   = true;
+        req.session.message  = '';
+        req.session.userId = user._id;
+        res.redirect('/users');
+    }catch(err){
+        if(err.code == 11000){
+            req.session.message = "Username taken";
+            res.redirect('/auth/register');
+        }else{
+            console.log(err)
+            res.send(err)
+        }
+        
+    }
 });
 
 //login
 router.post('/login', async (req, res) => {
   try {
-          const foundUser = await User.findOne({username: req.body.username});
-          console.log(foundUser)
+          const foundUser = await User.findOne({email: req.body.email});
+          console.log(`login: the user that was found is ${foundUser}`)
           if(foundUser){
             if(bcrypt.compareSync(req.body.password, foundUser.password)){
-              req.session.logged = true;
-              req.session.userId = foundUser._id
-              res.redirect('/reviews')
+                console.log(`succesful login in as ${foundUser}`)
+                req.session.logged = true;
+                req.session.userId = foundUser._id
+                res.redirect('/users')
             } else {
               req.session.message = 'Username or Password is Wrong';
               res.redirect('/auth/login')

@@ -1,39 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Denver Happy Hours</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Accounts
-        </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/users/new">Create an Account</a>
-          <a class="dropdown-item" href="/users/edit">Update Account</a>
-          <a class="dropdown-item" href="/users">View Accounts</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Happy Hours
-        </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/happyhours/new">Submit a Review</a>
-          <a class="dropdown-item" href="/happyhours">View All Happy Hours</a>
-          <a class="dropdown-item" href="/reviews">Read Reviews</a>
-        </div>
-      </li>
-      <li>
-        <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search Happy Hours" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </li>
-    </ul>
-  </div>
+
+<nav>
+    <a href="/users"><button>Home</button></a>
+    <a href="/users/edit"><button>Update Your Account</button></a>
+    <a href="/happyhours"><button>View All Happy Hours</button></a>
+    <a href="/reviews"><button>Review a Happy Hour</button></a>
+    <a href="/auth/logout"><button>Logout</button></a>
+
+    
 </nav>
+
