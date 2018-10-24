@@ -7,13 +7,20 @@ const requireLogin = require('../middleware/requireLogin')
 
 //login
 router.get('/login', (req, res) => {
-  res.render('auth/auth.ejs', {
+  res.render('auth/login.ejs', {
     message: req.session.message
   });
 });
+
 //register
+router.get('/register', (req, res)=>{
+    res.render('auth/register.ejs', {
+        message:req.session.message
+    })
+})
+
+//register post
 router.post('/register', async (req, res) => {
-    console.log(req.body)
   const password = req.body.password;
   const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(2));
   console.log('password was hashed')
@@ -27,7 +34,15 @@ router.post('/register', async (req, res) => {
   console.log(`the user that was created is ${user}`);
   req.session.logged   = true;
   req.session.message  = '';
-  res.redirect('/auth/login');
+    try{
+        const foundUser = await User.findOne({name: req.body.name});
+        req.session.logged = true;
+        req.session.userId = foundUser._id;
+        res.redirect('/users');
+    }catch(err){
+        console.log(err)
+        res.send(err)
+    }
 });
 
 //login
