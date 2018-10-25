@@ -4,7 +4,7 @@ const happyHourSchema = new mongoose.Schema({
     restaurant:{type: String, required: true},
     time: {type: String, required: true},
     neighborhood: String,
-    review: {type: mongoose.Schema.Types.ObjectId, ref: 'Reviews'}
+    reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Reviews'}]
 })
 
 module.exports = mongoose.model('HappyHour', happyHourSchema);

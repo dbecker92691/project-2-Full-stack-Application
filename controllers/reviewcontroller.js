@@ -42,27 +42,6 @@ router.get('/new',requireLogin, async(req, res) => {
 });
 
 
-// /reviews	POST	create
-// router.post('/', async (req, res) => {
-//     console.log('reached post')
-//     try{
-//         const review = await Review.create(req.body.id);
-//         console.log(Review, "Here is my reveiw!!!!!!!")
-//         res.redirect('/reviews', {
-//             review: review
-//         })
-//         // upon creation assing the property to review
-//         // review belongs to user.user_id
-
-    
-
-//     }catch(err){
-//         console.log(err, "<----- error error error")
-//         res.send(err)
-//     }
-    
-// });
-
 router.post('/', async(req, res) => {
     try{
         if(!req.session.userId) {
@@ -72,24 +51,21 @@ router.post('/', async(req, res) => {
         } else {
             const newReview = {
                 //review: req.body.review,
-                //happy: req.body.happyHour,
-                body: req.body,
+                happyHour: req.body.happyHour,
+                body: req.body.body,
                 user: req.session.userId
+            
             }
-            console.log(newReview, "Here is a new reveiw")
-        const createReview = await newReview.create(req.body).populate('happyHour').populate('user')
-        res.redirect('/reviews', {
-            review: createReview
-        })   
-        }
+        console.log(newReview, "Here is a new reveiw")
+        await Review.create(newReview)
+        console.log(newReview.happyHour.id, "<---- newReview happy hour ID")
+        res.redirect('/reviews')
+        }   
 
     } catch(err) {
         res.send(err)
     }
 });
-
-// const createReview = await Review.create(req.body);
-// res.redirect('/reviews')
 
 
 // /reviews/:id	GET	show
