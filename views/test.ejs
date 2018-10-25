@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
-<% include partials/csshead %>
+        <% include ../partials/csshead %>
 </head>
 <body>
 	<!--[if lte IE 9]>
@@ -11,7 +11,6 @@
 	<!-- Add your site or application content here -->
 	
 	<!-- <div class="fakeloader"></div> -->
-
 
 	<!-- Main wrapper -->
 	<div class="wrapper" id="wrapper">
@@ -24,7 +23,7 @@
                         <div class="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
                             <div class="logo">
                                 <a href="/">
-                                    <img src="images/logo/logo.png" alt="logo images">
+                                    <img src="../images/logo/foody.png" alt="logo images">
                                 </a>
                             </div>
                         </div>
@@ -34,11 +33,11 @@
                                     <ul class="mainmenu">
                                         <li class="drop"><a href="/">Home</a>
                                         </li>
-                                        <li><a href="auth/login">Log In</a></li>
+                                        <li><a href="/auth/login">Log In</a></li>
                                         <li class="drop"><a href="/users">Accounts</a>
                                             <ul class="dropdown__menu">
-                                                <li><a href="users/new">Create an Account</a></li>
-                                                <li><a href="users/edit">Edit your Account</a></li>
+                                                <li><a href="/auth/register">Create an Account</a></li>
+                                                <li><a href="/users/edit">Edit your Account</a></li>
                                                 <!-- <li><a href="menu-details.html">Menu Details</a></li> -->
                                             </ul>
                                         </li>
@@ -52,19 +51,24 @@
                                                 <li><a href="happyhours/edit">Edit Your Review</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
                                 
                             </div>
                         </div>
-                        <!-- <div class="col-lg-1 col-sm-4 col-md-4 order-2 order-lg-3">
+                        <div class="col-lg-1 col-sm-4 col-md-4 order-2 order-lg-3">
                             <div class="header__right d-flex justify-content-end">
                                 <div class="log__in">
                                     <a class="accountbox-trigger" href="#"><i class="zmdi zmdi-account-o"></i></a>
                                 </div>
+                                <div class="shopping__cart">
+                                    <a class="minicart-trigger" href="#"><i class="zmdi zmdi-shopping-basket"></i></a>
+                                    <div class="shop__qun">
+                                        <span>03</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                     <!-- Mobile Menu -->
                         <div class="mobile-menu d-block d-lg-none"></div>
@@ -74,48 +78,56 @@
             <!-- End Mainmenu Area -->
         </header>
         <!-- End Header Area -->
-        <!-- Start Slider Area -->
-        <!-- <div class="slider__area slider--one">
-            <div class="slider__activation--1"> -->
-                <!-- Start Single Slide -->
-                <!-- <div class="slide fullscreen bg-image--1" style="background: url('images/bg/1.jpg')"> -->
-                  <!-- bg-image--1 -->
-                    <!-- <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="slider__content">
-                                    <div class="slider__inner">
-                                        <h2>EatDrinkDen</h2>
-                                        <h1>Find the Best Happy Hour in Denver</h1>
-                                        <div class="slider__input">
-                                            <input type="text" placeholder="Neighborhood">
-                                            <input class="res__search" type="text" placeholder="Restaurant">
-                                            <div class="src__btn">
-                                                <a href="#">Search</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- End Single Slide -->
-            <!-- </div>
-        </div> -->
-        <!-- End Slider Area -->
+
+        <!-- INDEX ROUTE -->
+        <ul>
+                <% for(let i = 0; i < happy.length; i++) { %>
+                    <li>
+                        <a href='/happyhours/<%=happy[i]._id%>'>
+                            <%=happy[i].restaurant%>
+                        </a>
+                    </li>
+            <% } %>
+            
+        </ul>
+
+
+        <!-- SHOW ROUTE -->
+        <h1>
+                <%=happy.restaurant%>
+            </h1>
+                <p>Time: <%= happy.time %></p><br/>
+                <p>Neighborhood: <%= happy.neighborhood %></p><br/>
+                <a href='/happyhours/<%=happy._id%>/edit'>Edit</a>
+            <form action="/happyhours/<%=happy._id%>?_method=DELETE" method="POST">
+                <input type='submit' value='Delete'>
+            </form>
+
+            <!-- EDIT ROUTE -->
+            <main>
+                    <h1>Edit <%=happy.restaurant%> Info</h1>
+                        <form action='/happyhours/<%=happy._id%>?_method=PUT' method="POST">
+                            Restaurant: <input type='text' value='<%=happy.restaurant%>' name='restaurant'><br/>
+                            Time: <input type='text' value='<%=happy.time%>' name='time'><br/>
+                            Neighborhood: <input type='text' value='<%=happy.neighborhood%>' name='neighborhood'><br/>
+                            <input type='submit' value="Submit changes">
+                        </form>
+                </main>
+
+
+
         <!-- Start Bradcaump area -->
-        <div class="ht__bradcaump__area" style="background: url('../images/bg/login.jpg')">
+        <div class="ht__bradcaump__area bg-image--17">
             <div class="ht__bradcaump__wrap d-flex align-items-center">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="bradcaump__inner text-center brad__white">
-                                <h2 class="bradcaump-title">Register or Log In</h2>
+                            <div class="bradcaump__inner text-center">
+                                <h2 class="bradcaump-title">menu grid view</h2>
                                 <nav class="bradcaump-inner">
                                   <a class="breadcrumb-item" href="index.html">Home</a>
-                                  <!-- <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right"></i></span>
-                                  <span class="breadcrumb-item active">contact us</span> -->
+                                  <span class="brd-separetor"><i class="zmdi zmdi-long-arrow-right"></i></span>
+                                  <span class="breadcrumb-item active">menu grid view</span>
                                 </nav>
                             </div>
                         </div>
@@ -124,86 +136,282 @@
             </div>
         </div>
         <!-- End Bradcaump area --> 
-               <!-- Start Address -->
-               <div class="food__contact">
-                    <div class="food__contact__wrapper d-flex flex-wrap flex-lg-nowrap">
-                        <!-- Start Single Contact -->
-                        <!-- <div class="contact">
-                            <div class="ct__icon">
-                                <i class="zmdi zmdi-phone"></i>
+        <!-- Start Menu Grid Area -->
+        <section class="food__menu__grid__area section-padding--lg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="grid__show d-flex justify-content-between align-items-center">
+                            <div class="grid__show__item">
+                                <p>Showing 1-9 of 18 Result </p>
                             </div>
-                            <div class="ct__address">
-                                <p><a href="#">+088 01673-453290</a></p>
-                                <p><a href="#">+088 01773-458290</a></p>
+                            <div class="grid__show__btn">
+                                <a class="food__btn" href="#">Default Sorting</a>
                             </div>
-                        </div> -->
-                        <!-- End Single Contact -->
-                        <!-- Start Single Contact -->
-                        <!-- <div class="contact">
-                            <div class="ct__icon">
-                                <i class="zmdi zmdi-home"></i>
-                            </div>
-                            <div class="ct__address">
-                                <p>Elizabeth Tower. 6th Floor <br> Medtown, New York</p>
-                            </div>
-                        </div> -->
-                        <!-- End Single Contact -->
-                        <!-- Start Single Contact -->
-                        <!-- <div class="contact">
-                            <div class="ct__icon">
-                                <i class="zmdi zmdi-email"></i>
-                            </div>
-                            <div class="ct__address">
-                                <p><a href="#">delivery@e-mail.com</a></p>
-                                <p><a href="#">Aahar@e-mail.com</a></p>
-                            </div>
-                        </div> -->
-                        <!-- End Single Contact -->
+                        </div>
                     </div>
                 </div>
-                <!-- End Address -->
-                <section class="food__contact__form bg--white section-padding--lg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="contact__form__wrap">
-                                    <h2>Register for an Account</h2>
-                                    <div class="contact__form__inner">
-                                            <!-- <small><%=message%></small> -->
-                                        <form id="contact-form" action="/auth/register " method="post">
-                                            <div class="single-contact-form">
-                                                <div class="contact-box name d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-                                                    <input type="text" name="name" placeholder="Your Name"><br/>
-                                                    <input type="email" name="email" placeholder="E-mail"><br/>
-                                                    <input type="password" name="password" placeholder="Password"><br/>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="single-contact-form">
-                                                <div class="contact-box message">
-                                                    <textarea name="message"  placeholder="Message*"></textarea>
-                                                </div>
-                                            </div> -->
-                                            <div class="contact-btn">
-                                                <button type="submit" class="food__btn">Register</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                    <div class="form-output">
-                                        <p class="form-messege"></p>
-                                    </div>
+                <div class="row mt--30">
+                    <!-- Start Single Menu Item -->
+                    <div class="col-lg-4 col-sm-12 col-md-6">
+                        <div class="menu__grid__item wow fadeInLeft">
+                            <div class="menu__grid__thumb">
+                                <a href="menu-details.html">
+                                    <img src="images/menu-grid/1.jpg" alt="grid item images">
+                                </a>
+                                <div class="grid__item__offer">
+                                    <span>Special</span>
+                                    <span>Offer</span>
+                                </div>
+                            </div>
+                            <div class="menu__grid__inner">
+                                <div class="menu__grid__details">
+                                    <h2><a href="menu-details.html">Beef Burger</a></h2>
+                                    <ul class="grid__prize__list">
+                                        <li class="old__prize">$50</li>
+                                        <li>$50</li>
+                                    </ul>
+                                    <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                                </div>
+                                <div class="grid__addto__cart__btn">
+                                    <a href="cart.html">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-     
-        <!-- Start Footer Area
+                    <!-- End Single Menu Item -->
+                    <!-- Start Single Menu Item -->
+                    <div class="col-lg-4 col-sm-12 col-md-6">
+                        <div class="menu__grid__item wow fadeInUp">
+                            <div class="menu__grid__thumb">
+                                <a href="menu-details.html">
+                                    <img src="images/menu-grid/2.jpg" alt="grid item images">
+                                </a>
+                            </div>
+                            <div class="menu__grid__inner">
+                                <div class="menu__grid__details">
+                                    <h2><a href="menu-details.html">Salman With Tomato</a></h2>
+                                    <ul class="grid__prize__list">
+                                        <li class="old__prize">$50</li>
+                                        <li>$50</li>
+                                    </ul>
+                                    <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                                </div>
+                                <div class="grid__addto__cart__btn">
+                                    <a href="cart.html">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Menu Item -->
+                    <!-- Start Single Menu Item -->
+                    <div class="col-lg-4 col-sm-12 col-md-6">
+                        <div class="menu__grid__item wow fadeInRight">
+                            <div class="menu__grid__thumb">
+                                <a href="menu-details.html">
+                                    <img src="images/menu-grid/3.jpg" alt="grid item images">
+                                </a>
+                                <div class="grid__item__offer">
+                                    <span>Special</span>
+                                    <span>Offer</span>
+                                </div>
+                            </div>
+                            <div class="menu__grid__inner">
+                                <div class="menu__grid__details">
+                                    <h2><a href="menu-details.html">Salman With Tomato</a></h2>
+                                    <ul class="grid__prize__list">
+                                        <li class="old__prize">$50</li>
+                                        <li>$50</li>
+                                    </ul>
+                                    <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                                </div>
+                                <div class="grid__addto__cart__btn">
+                                    <a href="cart.html">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Menu Item -->
+                    <!-- Start Single Menu Item -->
+                    <div class="col-lg-4 col-sm-12 col-md-6">
+                        <div class="menu__grid__item wow fadeInLeft">
+                            <div class="menu__grid__thumb">
+                                <a href="menu-details.html">
+                                    <img src="images/menu-grid/4.jpg" alt="grid item images">
+                                </a>
+                            </div>
+                            <div class="menu__grid__inner">
+                                <div class="menu__grid__details">
+                                    <h2><a href="menu-details.html">Thai Vegetable</a></h2>
+                                    <ul class="grid__prize__list">
+                                        <li class="old__prize">$50</li>
+                                        <li>$50</li>
+                                    </ul>
+                                    <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                                </div>
+                                <div class="grid__addto__cart__btn">
+                                    <a href="cart.html">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Menu Item -->
+                    <!-- Start Single Menu Item -->
+                    <div class="col-lg-4 col-sm-12 col-md-6">
+                        <div class="menu__grid__item wow fadeInUp">
+                            <div class="menu__grid__thumb">
+                                <a href="menu-details.html">
+                                    <img src="images/menu-grid/5.jpg" alt="grid item images">
+                                </a>
+                                <div class="grid__item__offer">
+                                    <span>Special</span>
+                                    <span>Offer</span>
+                                </div>
+                            </div>
+                            <div class="menu__grid__inner">
+                                <div class="menu__grid__details">
+                                    <h2><a href="menu-details.html">Fried Rice</a></h2>
+                                    <ul class="grid__prize__list">
+                                        <li>$50</li>
+                                    </ul>
+                                    <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                                </div>
+                                <div class="grid__addto__cart__btn">
+                                    <a href="cart.html">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Menu Item -->
+                    <!-- Start Single Menu Item -->
+                    <div class="col-lg-4 col-sm-12 col-md-6">
+                        <div class="menu__grid__item wow fadeInRight">
+                            <div class="menu__grid__thumb">
+                                <a href="menu-details.html">
+                                    <img src="images/menu-grid/6.jpg" alt="grid item images">
+                                </a>
+                            </div>
+                            <div class="menu__grid__inner">
+                                <div class="menu__grid__details">
+                                    <h2><a href="menu-details.html">Asperagassr & Roasted Garlic</a></h2>
+                                    <ul class="grid__prize__list">
+                                        <li class="old__prize">$50</li>
+                                        <li>$50</li>
+                                    </ul>
+                                    <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                                </div>
+                                <div class="grid__addto__cart__btn">
+                                    <a href="cart.html">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Menu Item -->
+                    <!-- Start Single Menu Item -->
+                    <div class="col-lg-4 col-sm-12 col-md-6">
+                        <div class="menu__grid__item wow fadeInLeft">
+                            <div class="menu__grid__thumb">
+                                <a href="menu-details.html">
+                                    <img src="images/menu-grid/7.jpg" alt="grid item images">
+                                </a>
+                                <div class="grid__item__offer">
+                                    <span>Special</span>
+                                    <span>Offer</span>
+                                </div>
+                            </div>
+                            <div class="menu__grid__inner">
+                                <div class="menu__grid__details">
+                                    <h2><a href="menu-details.html">crispy hearts of palm cakes</a></h2>
+                                    <ul class="grid__prize__list">
+                                        <li class="old__prize">$50</li>
+                                        <li>$50</li>
+                                    </ul>
+                                    <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                                </div>
+                                <div class="grid__addto__cart__btn">
+                                    <a href="cart.html">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Menu Item -->
+                    <!-- Start Single Menu Item -->
+                    <div class="col-lg-4 col-sm-12 col-md-6">
+                        <div class="menu__grid__item wow fadeInUp">
+                            <div class="menu__grid__thumb">
+                                <a href="menu-details.html">
+                                    <img src="images/menu-grid/8.jpg" alt="grid item images">
+                                </a>
+                            </div>
+                            <div class="menu__grid__inner">
+                                <div class="menu__grid__details">
+                                    <h2><a href="menu-details.html">Beef Burger</a></h2>
+                                    <ul class="grid__prize__list">
+                                        <li>$50</li>
+                                    </ul>
+                                    <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                                </div>
+                                <div class="grid__addto__cart__btn">
+                                    <a href="cart.html">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Menu Item -->
+                    <!-- Start Single Menu Item -->
+                    <div class="col-lg-4 col-sm-12 col-md-6">
+                        <div class="menu__grid__item wow fadeInRight">
+                            <div class="menu__grid__thumb">
+                                <a href="menu-details.html">
+                                    <img src="images/menu-grid/9.jpg" alt="grid item images">
+                                </a>
+                                <div class="grid__item__offer">
+                                    <span>Special</span>
+                                    <span>Offer</span>
+                                </div>
+                            </div>
+                            <div class="menu__grid__inner">
+                                <div class="menu__grid__details">
+                                    <h2><a href="menu-details.html">Beef Burger</a></h2>
+                                    <ul class="grid__prize__list">
+                                        <li class="old__prize">$50</li>
+                                        <li>$50</li>
+                                    </ul>
+                                    <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                                </div>
+                                <div class="grid__addto__cart__btn">
+                                    <a href="cart.html">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Single Menu Item -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="food__pagination d-flex justify-content-center align-items-center mt--130">
+                            <li><a href="#"><i class="zmdi zmdi-chevron-left"></i></a></li>
+                            <li><a href="#">1</a></li>
+                            <li class="active"><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">...</a></li>
+                            <li><a href="#">7</a></li>
+                            <li><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Menu Grid Area -->
+        <!-- Start Footer Area -->
         <footer class="footer__area footer--1">
             <div class="footer__wrapper bg__cat--1 section-padding--lg">
                 <div class="container">
-                    <div class="row"> -->
+                    <div class="row">
                         <!-- Start Single Footer -->
-                        <!-- <div class="col-md-6 col-lg-3 col-sm-12">
+                        <div class="col-md-6 col-lg-3 col-sm-12">
                             <div class="footer">
                                 <h2 class="ftr__title">About Aahar</h2>
                                 <div class="footer__inner">
@@ -215,7 +423,7 @@
                                                     <i class="zmdi zmdi-home"></i>
                                                 </div>
                                                 <div class="frt__address__details">
-                                                    <p>123 Main St, Denver CO 80237</p>
+                                                    <p>Elizabeth Tower. 6th Floor Medtown, New York</p>
                                                 </div>
                                             </div>
                                             <div class="ftr__address">
@@ -223,15 +431,16 @@
                                                     <i class="zmdi zmdi-phone"></i>
                                                 </div>
                                                 <div class="frt__address__details">
-                                                    <p><a href="#">+303-555-5555</a></p>
+                                                    <p><a href="#">+088 01673-453290</a></p>
+                                                    <p><a href="#">+088 01773-458290</a></p>
                                                 </div>
                                             </div>
                                             <div class="ftr__address">
                                                 <div class="ftr__address__icon">
                                                     <i class="zmdi zmdi-email"></i>
-                                                </div> -->
-                                                <!-- <div class="frt__address__details">
-                                                    <p><a href="#">denverhappyhours@gmail.com</a></p>
+                                                </div>
+                                                <div class="frt__address__details">
+                                                    <p><a href="#">Aahardelivery@email.com</a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -244,10 +453,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                         <!-- End Single Footer -->
                         <!-- Start Single Footer -->
-                        <!-- <div class="col-md-6 col-lg-3 col-sm-12 sm--mt--40">
+                        <div class="col-md-6 col-lg-3 col-sm-12 sm--mt--40">
                             <div class="footer gallery">
                                 <h2 class="ftr__title">Our Gallery</h2>
                                 <div class="footer__inner">
@@ -261,10 +470,28 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                         <!-- End Single Footer -->
                         <!-- Start Single Footer -->
-                        <!-- <div class="col-md-6 col-lg-3 col-sm-12 md--mt--40 sm--mt--40">
+                        <div class="col-md-6 col-lg-3 col-sm-12 md--mt--40 sm--mt--40">
+                            <div class="footer">
+                                <h2 class="ftr__title">Opening Time</h2>
+                                <div class="footer__inner">
+                                    <ul class="opening__time__list">
+                                        <li>Saturday<span>.......</span>9am to 11pm</li>
+                                        <li>Sunday<span>.......</span>9am to 11pm</li>
+                                        <li>Monday<span>.......</span>9am to 11pm</li>
+                                        <li>Tuesday<span>.......</span>9am to 11pm</li>
+                                        <li>Wednesday<span>.......</span>9am to 11pm</li>
+                                        <li>Thursday<span>.......</span>9am to 11pm</li>
+                                        <li>Friday<span>.......</span>9am to 11pm</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Footer -->
+                        <!-- Start Single Footer -->
+                        <div class="col-md-6 col-lg-3 col-sm-12 md--mt--40 sm--mt--40">
                             <div class="footer">
                                 <h2 class="ftr__title">Latest Post</h2>
                                 <div class="footer__inner">
@@ -296,8 +523,8 @@
                                                 <a href="blog-details,html">
                                                     <img src="images/blog/sm-img/3.jpg" alt="blog images">
                                                 </a>
-                                            </div> -->
-                                            <!-- <div class="sin__post__details">
+                                            </div>
+                                            <div class="sin__post__details">
                                                 <h6><a href="blog-details.html">Vanilla Pastry</a></h6>
                                                 <p>Lordo loramcon secte turadip isicing</p>
                                             </div>
@@ -305,18 +532,23 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                         <!-- End Single Footer -->
-                    <!-- </div>
+                    </div>
                 </div>
-            </div> -->
+            </div>
             <div class="copyright bg--theme">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="copyright__inner">
                                 <div class="cpy__right--left">
-                                    <p>@All Right Reserved <a href="https://www.google.com">EatDrinkDen</a></p>
+                                    <p>@All Right Reserved.<a href="https://devitems.com">Devitems</a></p>
+                                </div>
+                                <div class="cpy__right--right">
+                                    <a href="#">
+                                        <img src="images/icon/shape/2.png" alt="payment images">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -354,6 +586,7 @@
                                     <ul>
                                         <li class="facebook"><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
                                         <li class="twitter"><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                                        <li class="pinterest"><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -435,6 +668,22 @@
                             <button class="cartbox__item__remove">
                                 <i class="fa fa-trash"></i>
                             </button>
+                        </div><!-- //Cartbox Single Item -->
+                    </div>
+                    <div class="cartbox__total">
+                        <ul>
+                            <li><span class="cartbox__total__title">Subtotal</span><span class="price">$70</span></li>
+                            <li class="shipping-charge"><span class="cartbox__total__title">Shipping Charge</span><span class="price">$05</span></li>
+                            <li class="grandtotal">Total<span class="price">$75</span></li>
+                        </ul>
+                    </div>
+                    <div class="cartbox__buttons">
+                        <a class="food__btn" href="cart.html"><span>View cart</span></a>
+                        <a class="food__btn" href="checkout.html"><span>Checkout</span></a>
+                    </div>
+                </div>
+            </div>
+        </div><!-- //Cartbox -->   
 	</div><!-- //Main wrapper -->
 
 	<!-- JS Files -->

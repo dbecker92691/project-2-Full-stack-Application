@@ -14,62 +14,68 @@
 
 	<!-- Main wrapper -->
 	<div class="wrapper" id="wrapper">
-            <!-- Start Header Area -->
-            <header class="htc__header bg--white">
-                <!-- Start Mainmenu Area -->
-                <div id="sticky-header-with-topbar" class="mainmenu__wrap sticky__header">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
-                                <div class="logo">
-                                    <a href="/">
-                                        <img src="../images/logo/logo.png" alt="logo images">
-                                    </a>
-                                </div>
+		<!-- Start Header Area -->
+        <header class="htc__header bg--white">
+            <!-- Start Mainmenu Area -->
+            <div id="sticky-header-with-topbar" class="mainmenu__wrap sticky__header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
+                            <div class="logo">
+                                <a href="/">
+                                    <img src="../images/logo/foody.png" alt="logo images">
+                                </a>
                             </div>
-                            <div class="col-lg-9 col-sm-4 col-md-2 order-3 order-lg-2">
-                                <div class="main__menu__wrap">
-                                    <nav class="main__menu__nav d-none d-lg-block">
-                                        <ul class="mainmenu">
-                                            <li class="drop"><a href="/">Home</a>
-                                            </li>
-                                            <li><a href="auth/login">Log In</a></li>
-                                            <li class="drop"><a href="/users">Accounts</a>
-                                                <ul class="dropdown__menu">
-                                                    <li><a href="/users/new">Create an Account</a></li>
-                                                    <li><a href="/users/edit">Edit your Account</a></li>
-                                                    <!-- <li><a href="menu-details.html">Menu Details</a></li> -->
-                                                </ul>
-                                            </li>
-                                            <!-- <li><a href="gallery.html">Gallery</a></li> -->
-                                            <li class="drop"><a href="/happyhours/index">Restaurants</a>
-                                                <ul class="dropdown__menu">
-                                                    <!-- <li><a href="happyhours/index.ejs">Restaurants</a></li> -->
-                                                    <li><a href="/happyhours/show">Find a Restuarant</a></li>
-                                                    <li><a href="/happyhours/new">Write a Review</a></li>
-                                                    <!-- <li><a href="blog-list-right-sidebar.html">Blog List with right sidebar</a></li> -->
-                                                    <li><a href="/happyhours/edit">Edit Your Review</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="/auth/register">Register</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
+                        </div>
+                        <div class="col-lg-9 col-sm-4 col-md-2 order-3 order-lg-2">
+                            <div class="main__menu__wrap">
+                                <nav class="main__menu__nav d-none d-lg-block">
+                                    <ul class="mainmenu">
+                                        <li class="drop"><a href="/">Home</a>
+                                        </li>
+                                        <li><a href="/auth/login">Log In</a></li>
+                                        <li class="drop"><a href="/users">Accounts</a>
+                                            <ul class="dropdown__menu">
+                                                <li><a href="/auth/register">Create an Account</a></li>
+                                                <li><a href="/users/edit">Edit your Account</a></li>
+                                                <!-- <li><a href="menu-details.html">Menu Details</a></li> -->
+                                            </ul>
+                                        </li>
+                                        <!-- <li><a href="gallery.html">Gallery</a></li> -->
+                                        <li class="drop"><a href="/happyhours/index">Restaurants</a>
+                                            <ul class="dropdown__menu">
+                                                <!-- <li><a href="happyhours/index.ejs">Restaurants</a></li> -->
+                                                <li><a href="/happyhours/show">Find a Restuarant</a></li>
+                                                <li><a href="/happyhours/new">Write a Review</a></li>
+                                                <!-- <li><a href="blog-list-right-sidebar.html">Blog List with right sidebar</a></li> -->
+                                                <li><a href="/happyhours/edit">Edit Your Review</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                
                             </div>
-                            <!-- <div class="col-lg-1 col-sm-4 col-md-4 order-2 order-lg-3">
-                                <div class="header__right d-flex justify-content-end">
-                                    <div class="log__in">
-                                        <a class="accountbox-trigger" href="#"><i class="zmdi zmdi-account-o"></i></a>
+                        </div>
+                        <div class="col-lg-1 col-sm-4 col-md-4 order-2 order-lg-3">
+                            <div class="header__right d-flex justify-content-end">
+                                <div class="log__in">
+                                    <a class="accountbox-trigger" href="#"><i class="zmdi zmdi-account-o"></i></a>
+                                </div>
+                                <div class="shopping__cart">
+                                    <a class="minicart-trigger" href="#"><i class="zmdi zmdi-shopping-basket"></i></a>
+                                    <div class="shop__qun">
+                                        <span>03</span>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
-                        <!-- Mobile Menu -->
-                            <div class="mobile-menu d-block d-lg-none"></div>
-                        <!-- Mobile Menu -->
                     </div>
+                    <!-- Mobile Menu -->
+                        <div class="mobile-menu d-block d-lg-none"></div>
+                    <!-- Mobile Menu -->
                 </div>
-                <!-- End Mainmenu Area -->
+            </div>
+            <!-- End Mainmenu Area -->
         </header>
         <!-- End Header Area -->
         <!-- Start Bradcaump area -->
@@ -171,7 +177,6 @@
                                     </div> -->
                                     <div class="contact-btn">
                                         <button type="submit" class="food__btn">Login</button>
-                                        <a href="/auth/register" class="food__btn"><button>Register for an Account</button></a>
                                     </div>
                                 </form>
                             </div>

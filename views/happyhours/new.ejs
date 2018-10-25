@@ -1,22 +1,402 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="zxx">
 <head>
-    <% include ../partials/csshead %>
+        <% include ../partials/csshead %>
 </head>
-
 <body>
-   <header>
-   <% include ../partials/navbar %>
-        <h1>New Happy Hour</h1>
-   </header> 
-   <main>
-        <form action="/happyhours/<%=happy._id%>?_method=PUT" method="POST">
-                Restaurant: <input type='text' name='restaurant'><br/>
-                Time: <input type="text" name="time"><br/>
-                Neighborhood: <input type="text" name="neighborhood"><br/>
-            <input type="submit" value="Create Happy Hour">
-        </form>
-   </main>
-   
+	<!--[if lte IE 9]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+	<![endif]-->
+
+	<!-- Add your site or application content here -->
+	
+	<!-- <div class="fakeloader"></div> -->
+
+	<!-- Main wrapper -->
+	<div class="wrapper" id="wrapper">
+		<!-- Start Header Area -->
+        <header class="htc__header bg--white">
+            <!-- Start Mainmenu Area -->
+            <div id="sticky-header-with-topbar" class="mainmenu__wrap sticky__header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
+                            <div class="logo">
+                                <a href="/">
+                                    <img src="../images/logo/foody.png" alt="logo images">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-sm-4 col-md-2 order-3 order-lg-2">
+                            <div class="main__menu__wrap">
+                                <nav class="main__menu__nav d-none d-lg-block">
+                                    <ul class="mainmenu">
+                                        <li class="drop"><a href="/">Home</a>
+                                        </li>
+                                        <li><a href="/auth/login">Log In</a></li>
+                                        <li class="drop"><a href="/users">Accounts</a>
+                                            <ul class="dropdown__menu">
+                                                <li><a href="/auth/register">Create an Account</a></li>
+                                                <li><a href="/users/edit">Edit your Account</a></li>
+                                                <!-- <li><a href="menu-details.html">Menu Details</a></li> -->
+                                            </ul>
+                                        </li>
+                                        <!-- <li><a href="gallery.html">Gallery</a></li> -->
+                                        <li class="drop"><a href="/happyhours/index">Happy Hours</a>
+                                            <ul class="dropdown__menu">
+                                                <!-- <li><a href="happyhours/index.ejs">Restaurants</a></li> -->
+                                                <li><a href="/happyhours/show">Find a Happy Hour</a></li>
+                                                <li><a href="/happyhours/new">Write a Review</a></li>
+                                                <!-- <li><a href="blog-list-right-sidebar.html">Blog List with right sidebar</a></li> -->
+                                                <li><a href="/happyhours/edit">Edit Your Review</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                                
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-sm-4 col-md-4 order-2 order-lg-3">
+                            <div class="header__right d-flex justify-content-end">
+                                <div class="log__in">
+                                    <a class="accountbox-trigger" href="#"><i class="zmdi zmdi-account-o"></i></a>
+                                </div>
+                                <div class="shopping__cart">
+                                    <a class="minicart-trigger" href="#"><i class="zmdi zmdi-shopping-basket"></i></a>
+                                    <div class="shop__qun">
+                                        <span>03</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                        <div class="mobile-menu d-block d-lg-none"></div>
+                    <!-- Mobile Menu -->
+                </div>
+            </div>
+            <!-- End Mainmenu Area -->
+        </header>
+
+<!-- Start Bradcaump area -->
+<div class="ht__bradcaump__area bg-image--17">
+<div class="ht__bradcaump__wrap d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="bradcaump__inner text-center">
+                <form action="/happyhours/<%=happy._id%>?_method=PUT" method="POST">
+                            Restaurant: <input type='text' name='restaurant'><br/>
+                            Time: <input type="text" name="time"><br/>
+                            Neighborhood: <input type="text" name="neighborhood"><br/>
+                        <input type="submit" value="Create Happy Hour">
+                    </form>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- End Bradcaump area --> 
+<!-- Start Menu Grid Area -->
+<section class="food__menu__grid__area section-padding--lg">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="grid__show d-flex justify-content-between align-items-center">
+                <div class="grid__show__item">
+                    <p>Showing 1-9 of 18 Result </p>
+                </div>
+                <div class="grid__show__btn">
+                    <a class="food__btn" href="#">Default Sorting</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt--30">
+        <!-- Start Single Menu Item -->
+        <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="menu__grid__item wow fadeInLeft">
+                <div class="menu__grid__thumb">
+                    <a href="menu-details.html">
+                        <img src="images/menu-grid/1.jpg" alt="grid item images">
+                    </a>
+                    <div class="grid__item__offer">
+                        <span>Special</span>
+                        <span>Offer</span>
+                    </div>
+                </div>
+                <div class="menu__grid__inner">
+                    <div class="menu__grid__details">
+                        <h2><a href="menu-details.html">Beef Burger</a></h2>
+                        <ul class="grid__prize__list">
+                            <li class="old__prize">$50</li>
+                            <li>$50</li>
+                        </ul>
+                        <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                    </div>
+                    <div class="grid__addto__cart__btn">
+                        <a href="cart.html">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Menu Item -->
+        <!-- Start Single Menu Item -->
+        <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="menu__grid__item wow fadeInUp">
+                <div class="menu__grid__thumb">
+                    <a href="menu-details.html">
+                        <img src="images/menu-grid/2.jpg" alt="grid item images">
+                    </a>
+                </div>
+                <div class="menu__grid__inner">
+                    <div class="menu__grid__details">
+                        <h2><a href="menu-details.html">Salman With Tomato</a></h2>
+                        <ul class="grid__prize__list">
+                            <li class="old__prize">$50</li>
+                            <li>$50</li>
+                        </ul>
+                        <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                    </div>
+                    <div class="grid__addto__cart__btn">
+                        <a href="cart.html">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Menu Item -->
+        <!-- Start Single Menu Item -->
+        <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="menu__grid__item wow fadeInRight">
+                <div class="menu__grid__thumb">
+                    <a href="menu-details.html">
+                        <img src="images/menu-grid/3.jpg" alt="grid item images">
+                    </a>
+                    <div class="grid__item__offer">
+                        <span>Special</span>
+                        <span>Offer</span>
+                    </div>
+                </div>
+                <div class="menu__grid__inner">
+                    <div class="menu__grid__details">
+                        <h2><a href="menu-details.html">Salman With Tomato</a></h2>
+                        <ul class="grid__prize__list">
+                            <li class="old__prize">$50</li>
+                            <li>$50</li>
+                        </ul>
+                        <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                    </div>
+                    <div class="grid__addto__cart__btn">
+                        <a href="cart.html">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Menu Item -->
+        <!-- Start Single Menu Item -->
+        <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="menu__grid__item wow fadeInLeft">
+                <div class="menu__grid__thumb">
+                    <a href="menu-details.html">
+                        <img src="images/menu-grid/4.jpg" alt="grid item images">
+                    </a>
+                </div>
+                <div class="menu__grid__inner">
+                    <div class="menu__grid__details">
+                        <h2><a href="menu-details.html">Thai Vegetable</a></h2>
+                        <ul class="grid__prize__list">
+                            <li class="old__prize">$50</li>
+                            <li>$50</li>
+                        </ul>
+                        <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                    </div>
+                    <div class="grid__addto__cart__btn">
+                        <a href="cart.html">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Menu Item -->
+        <!-- Start Single Menu Item -->
+        <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="menu__grid__item wow fadeInUp">
+                <div class="menu__grid__thumb">
+                    <a href="menu-details.html">
+                        <img src="images/menu-grid/5.jpg" alt="grid item images">
+                    </a>
+                    <div class="grid__item__offer">
+                        <span>Special</span>
+                        <span>Offer</span>
+                    </div>
+                </div>
+                <div class="menu__grid__inner">
+                    <div class="menu__grid__details">
+                        <h2><a href="menu-details.html">Fried Rice</a></h2>
+                        <ul class="grid__prize__list">
+                            <li>$50</li>
+                        </ul>
+                        <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                    </div>
+                    <div class="grid__addto__cart__btn">
+                        <a href="cart.html">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Menu Item -->
+        <!-- Start Single Menu Item -->
+        <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="menu__grid__item wow fadeInRight">
+                <div class="menu__grid__thumb">
+                    <a href="menu-details.html">
+                        <img src="images/menu-grid/6.jpg" alt="grid item images">
+                    </a>
+                </div>
+                <div class="menu__grid__inner">
+                    <div class="menu__grid__details">
+                        <h2><a href="menu-details.html">Asperagassr & Roasted Garlic</a></h2>
+                        <ul class="grid__prize__list">
+                            <li class="old__prize">$50</li>
+                            <li>$50</li>
+                        </ul>
+                        <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                    </div>
+                    <div class="grid__addto__cart__btn">
+                        <a href="cart.html">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Menu Item -->
+        <!-- Start Single Menu Item -->
+        <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="menu__grid__item wow fadeInLeft">
+                <div class="menu__grid__thumb">
+                    <a href="menu-details.html">
+                        <img src="images/menu-grid/7.jpg" alt="grid item images">
+                    </a>
+                    <div class="grid__item__offer">
+                        <span>Special</span>
+                        <span>Offer</span>
+                    </div>
+                </div>
+                <div class="menu__grid__inner">
+                    <div class="menu__grid__details">
+                        <h2><a href="menu-details.html">crispy hearts of palm cakes</a></h2>
+                        <ul class="grid__prize__list">
+                            <li class="old__prize">$50</li>
+                            <li>$50</li>
+                        </ul>
+                        <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                    </div>
+                    <div class="grid__addto__cart__btn">
+                        <a href="cart.html">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Menu Item -->
+        <!-- Start Single Menu Item -->
+        <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="menu__grid__item wow fadeInUp">
+                <div class="menu__grid__thumb">
+                    <a href="menu-details.html">
+                        <img src="images/menu-grid/8.jpg" alt="grid item images">
+                    </a>
+                </div>
+                <div class="menu__grid__inner">
+                    <div class="menu__grid__details">
+                        <h2><a href="menu-details.html">Beef Burger</a></h2>
+                        <ul class="grid__prize__list">
+                            <li>$50</li>
+                        </ul>
+                        <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                    </div>
+                    <div class="grid__addto__cart__btn">
+                        <a href="cart.html">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Menu Item -->
+        <!-- Start Single Menu Item -->
+        <div class="col-lg-4 col-sm-12 col-md-6">
+            <div class="menu__grid__item wow fadeInRight">
+                <div class="menu__grid__thumb">
+                    <a href="menu-details.html">
+                        <img src="images/menu-grid/9.jpg" alt="grid item images">
+                    </a>
+                    <div class="grid__item__offer">
+                        <span>Special</span>
+                        <span>Offer</span>
+                    </div>
+                </div>
+                <div class="menu__grid__inner">
+                    <div class="menu__grid__details">
+                        <h2><a href="menu-details.html">Beef Burger</a></h2>
+                        <ul class="grid__prize__list">
+                            <li class="old__prize">$50</li>
+                            <li>$50</li>
+                        </ul>
+                        <p>erve armesan may be added to the top of apLem ip, consectetur adipisicing elLorem ipsum adipisicing elit, sed do</p>
+                    </div>
+                    <div class="grid__addto__cart__btn">
+                        <a href="cart.html">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Single Menu Item -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="food__pagination d-flex justify-content-center align-items-center mt--130">
+                <li><a href="#"><i class="zmdi zmdi-chevron-left"></i></a></li>
+                <li><a href="#">1</a></li>
+                <li class="active"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">...</a></li>
+                <li><a href="#">7</a></li>
+                <li><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</section>
+<!-- End Menu Grid Area -->
+
+<div class="copyright bg--theme">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="copyright__inner">
+                    <div class="cpy__right--left">
+                        <p>@All Right Reserved <a href="https://www.google.com">EatDrinkDen</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</footer>
+<!-- End Footer Area -->
+</div><!-- //Main wrapper -->
+
+<!-- JS Files -->
+<script src="js/vendor/jquery-3.2.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/active.js"></script>
+</body>
+</html>
+
+
+
+
 </body>
 </html>
