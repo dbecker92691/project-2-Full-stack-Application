@@ -67,10 +67,11 @@ router.put('/:id',requireLogin, async (req, res) => {
 router.get('/:id',requireLogin, async (req, res) => {
     try{
         const reviews = await Review.find({});
-        const findHappy = await HappyHour.findById(req.params.id)
+        const findHappy = await HappyHour.findById(req.params.id).populate('user')
         res.render('happyhours/show.ejs', {
             happy: findHappy,
-            reviews: reviews
+            reviews: reviews,
+            id: req.session.userId
             //.review: foundReviews
         })
     }catch(err){
@@ -82,10 +83,15 @@ router.get('/:id',requireLogin, async (req, res) => {
 
 // delete
 router.delete('/:id',requireLogin, async (req, res) => {
+    
     try{
-        HappyHour.findByIdAndDelete(req.params.id, req.body, () => {
+        if(HappyHour.id !== req.session.userId){
+            console.log('this is not yours to delete')
+        } else{
+            HappyHour.findByIdAndDelete(req.params.id, req.body, () => {
             res.redirect('/happyhours')
-        });
+            })
+        }
     }catch(err){
         res.send(err)
     }

@@ -3,7 +3,6 @@ const router  = express.Router();
 const User    = require('../models/usermodel');
 const bcrypt  = require('bcryptjs');
 const requireLogin = require('../middleware/requireLogin')
-const validate = require('../middleware/validate')
 
 
 //login
@@ -40,7 +39,7 @@ router.post('/register', async (req, res) => {
         res.redirect('/users');
     }catch(err){
         if(err.code == 11000){
-            req.session.message = "Username taken";
+            req.session.message = "Email is already taken";
             res.redirect('/auth/register');
         }else{
             console.log(err)
