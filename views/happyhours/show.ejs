@@ -19,5 +19,18 @@
         </form>
 
     </main>
+    <section>
+        <h1>
+            Reviews:
+        </h1>
+        <% for(let i = 0; i < happy.length; i++) { %>
+            <ul>
+                <li>
+                    <%= happy[i].restaurant %>
+                    <%= happy[i].reviews %>
+                </li>
+            </ul>
+        <% } %>
+    </section>
 </body>
 </html>
