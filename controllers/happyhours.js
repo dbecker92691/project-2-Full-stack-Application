@@ -14,6 +14,19 @@ router.get('/',requireLogin, (req, res) =>{
     })
 });
 
+// edit
+router.get('/:id/edit',requireLogin, async (req, res) => {
+    try {
+        const foundHappy = await HappyHour.findById(req.params.id)
+        res.render('happyhours/edit.ejs', {
+            happy: foundHappy
+        })
+
+    } catch(err){
+        res.send(err)
+    }
+});
+
 // new happy hour
 router.get('/new',requireLogin, async (req, res) => {
     try{
@@ -39,18 +52,7 @@ router.put('/',requireLogin, async (req, res) => {
     
 });
 
-// edit
-router.get('/:id/edit',requireLogin, async (req, res) => {
-    try {
-        const foundHappy = await HappyHour.findById(req.params.id)
-        res.render('happyhours/edit.ejs', {
-            happy: foundHappy
-        })
 
-    } catch(err){
-        res.send(err)
-    }
-});
 
 router.put('/:id',requireLogin, async (req, res) => {
     try {
