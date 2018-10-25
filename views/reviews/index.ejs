@@ -5,26 +5,28 @@
 </head>
 <body>
   <header>
-      <h1>This is our Reviews Page </h1><br>
+    <% include ../partials/navbar %>
   </header>
-
   <main>
-      <% for(let i = 0; i < happy.length; i++) { %>
-        <ul>
-            <li>
-              <a href='happyhours/<%=happy._id%>'>
-                <%=happy[i].restaurant%>
-              </a>
-            </li>
-        </ul>
-     <% } %>
+    <h1>This is our Reviews Page </h1><br>
   </main>
   <body>
+    <% for(let i = 0; i < happy.length; i++) { %>
+      <ul>
+          <li>
+            <a href='happyhours/<%=happy._id%>'>
+              <%=happy[i].restaurant%>
+            </a>
+          </li>
+      </ul>
+    <% } %>
     <a href='reviews/new'>New Review</a>
     <% for(let i = 0; i < reviews.length; i++) { %>
       <ul>
         <li>
-          <%= reviews[i] %>
+          <%= reviews[i].user %><br/>
+          <%= reviews[i].restaurant %><br/>
+          <%= reviews[i].body %>
         </li>
       </ul>
     <%}%>

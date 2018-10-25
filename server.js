@@ -30,6 +30,7 @@ app.use(session({
     store: store,
     resave: true,
 }))
+
 app.use((req, res, next)=> {
     res.locals.userId = req.session.userId;
     next();
