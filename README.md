@@ -1,5 +1,5 @@
 # Denver Happy Hours
-![Denver HH Wireframe](images/wireframe.png)
+![Denver HH Wireframe](public/images/wireframe.png)
 
 ## User Stories
 One of the best things about Denver is the happy hour scene. What our users will be able to do:

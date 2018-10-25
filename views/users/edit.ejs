@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
    <head>
-        <% ../include partials/csshead %>
+        <% include ../partials/csshead %>
    </head>
    <body>
       <!--[if lte IE 9]>
@@ -19,7 +19,7 @@
                             <div class="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
                                 <div class="logo">
                                     <a href="/">
-                                        <img src="../images/logo/foody.png" alt="logo images">
+                                        <img src="../images/logo/logo.png" alt="logo images">
                                     </a>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@
                                         <ul class="mainmenu">
                                             <li class="drop"><a href="/index">Home</a>
                                             </li>
-                                            <li><a href="auth/login">Log In</a></li>
+                                            <li><a href="/auth/login">Log In</a></li>
                                             <li class="drop"><a href="/users">Accounts</a>
                                                 <ul class="dropdown__menu">
                                                     <li><a href="/auth/register">Create an Account</a></li>
@@ -38,13 +38,13 @@
                                                 </ul>
                                             </li>
                                             <!-- <li><a href="gallery.html">Gallery</a></li> -->
-                                            <li class="drop"><a href="happyhours/index">Restaurants</a>
+                                            <li class="drop"><a href="/happyhours/index">Restaurants</a>
                                                 <ul class="dropdown__menu">
                                                     <!-- <li><a href="happyhours/index.ejs">Restaurants</a></li> -->
-                                                    <li><a href="happyhours/show">Find a Restuarant</a></li>
-                                                    <li><a href="happyhours/new">Write a Review</a></li>
+                                                    <li><a href="/happyhours/show">Find a Restuarant</a></li>
+                                                    <li><a href="/happyhours/new">Write a Review</a></li>
                                                     <!-- <li><a href="blog-list-right-sidebar.html">Blog List with right sidebar</a></li> -->
-                                                    <li><a href="happyhours/edit">Edit Your Review</a></li>
+                                                    <li><a href="/happyhours/edit">Edit Your Review</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -60,10 +60,10 @@
                 <!-- End Mainmenu Area -->
         </header>
          <!-- Start Slider Area -->
-         <div class="slider__area slider--four">
-            <div class="slider__activation--1">
+         <!-- <div class="slider__area slider--four">
+            <div class="slider__activation--1"> -->
                <!-- Start Single Slide -->
-               <div class="slide slider__fixed--height bg-image--14 poss--relative">
+               <!-- <div class="slide slider__fixed--height bg-image--14 poss--relative">
                   <div class="container">
                      <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -81,10 +81,10 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div> -->
                <!-- End Single Slide -->
-            </div>
-         </div>
+            <!-- </div>
+         </div> -->
          <!-- End Slider Area -->
          <section class="food__contact__form bg--white section-padding--lg">
                 <div class="container">
@@ -93,7 +93,6 @@
                             <div class="contact__form__wrap">
                                 <h2>Edit Your Account</h2>
                                 <div class="contact__form__inner">
-                                        <!-- <small><%=message%></small> -->
                                     <form action="/users/<%=user._id%>?_method=PUT" method="POST">
                                         <div class="single-contact-form">
                                             <div class="contact-box name d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
@@ -135,7 +134,7 @@
                                  </div>
                               </div>
                               <div class="fact__title">
-                                 <h2>Food </h2>
+                                 <h2>Reviews</h2>
                               </div>
                            </div>
                         </div>
@@ -148,11 +147,11 @@
                                     <img src="../images/icon/flat-icon/5.png" alt="flat icon">
                                  </div>
                                  <div class="fact__count ">
-                                    <span class="count">2456</span>
+                                    <span class="count">456</span>
                                  </div>
                               </div>
                               <div class="fact__title">
-                                 <h2>Chef </h2>
+                                 <h2>Restaurants</h2>
                               </div>
                            </div>
                         </div>
@@ -165,11 +164,11 @@
                                     <img src="../images/icon/flat-icon/6.png" alt="flat icon">
                                  </div>
                                  <div class="fact__count ">
-                                    <span class="count">2456</span>
+                                    <span class="count">43</span>
                                  </div>
                               </div>
                               <div class="fact__title">
-                                 <h2>Menu </h2>
+                                 <h2>New Reviews Per Day</h2>
                               </div>
                            </div>
                         </div>
@@ -182,11 +181,11 @@
                                     <img src="../images/icon/flat-icon/7.png" alt="flat icon">
                                  </div>
                                  <div class="fact__count ">
-                                    <span class="count">2456</span>
+                                    <span class="count">17</span>
                                  </div>
                               </div>
                               <div class="fact__title">
-                                 <h2>Restaurant </h2>
+                                 <h2>Your Reviews</h2>
                               </div>
                            </div>
                         </div>
