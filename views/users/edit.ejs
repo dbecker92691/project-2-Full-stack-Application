@@ -1,25 +1,226 @@
-<!DOCTYPE html>
-<html>
-<head>
-<% include ../partials/csshead %>
-</head>
-<body>
-  <header>
-    <% include ../partials/navbar %>
-  </header>
+<!doctype html>
+<html class="no-js" lang="zxx">
+   <head>
+        <% ../include partials/csshead %>
+   </head>
+   <body>
+      <!--[if lte IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+      <![endif]-->
+      <!-- Add your site or application content here -->
+      <!-- <div class="fakeloader"></div> -->
+      <!-- Main wrapper -->
+      <div class="wrapper box__layout" id="wrapper">
+        <header class="htc__header bg--white">
+                <!-- Start Mainmenu Area -->
+                <div id="sticky-header-with-topbar" class="mainmenu__wrap sticky__header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-4 col-md-6 order-1 order-lg-1">
+                                <div class="logo">
+                                    <a href="/">
+                                        <img src="../images/logo/foody.png" alt="logo images">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-sm-4 col-md-2 order-3 order-lg-2">
+                                <div class="main__menu__wrap">
+                                    <nav class="main__menu__nav d-none d-lg-block">
+                                        <ul class="mainmenu">
+                                            <li class="drop"><a href="/index">Home</a>
+                                            </li>
+                                            <li><a href="auth/login">Log In</a></li>
+                                            <li class="drop"><a href="/users">Accounts</a>
+                                                <ul class="dropdown__menu">
+                                                    <li><a href="/auth/register">Create an Account</a></li>
+                                                    <li><a href="/users/edit">Edit your Account</a></li>
+                                                    <!-- <li><a href="menu-details.html">Menu Details</a></li> -->
+                                                </ul>
+                                            </li>
+                                            <!-- <li><a href="gallery.html">Gallery</a></li> -->
+                                            <li class="drop"><a href="happyhours/index">Restaurants</a>
+                                                <ul class="dropdown__menu">
+                                                    <!-- <li><a href="happyhours/index.ejs">Restaurants</a></li> -->
+                                                    <li><a href="happyhours/show">Find a Restuarant</a></li>
+                                                    <li><a href="happyhours/new">Write a Review</a></li>
+                                                    <!-- <li><a href="blog-list-right-sidebar.html">Blog List with right sidebar</a></li> -->
+                                                    <li><a href="happyhours/edit">Edit Your Review</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>  
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                            <div class="mobile-menu d-block d-lg-none"></div>
+                        <!-- Mobile Menu -->
+                    </div>
+                </div>
+                <!-- End Mainmenu Area -->
+        </header>
+         <!-- Start Slider Area -->
+         <div class="slider__area slider--four">
+            <div class="slider__activation--1">
+               <!-- Start Single Slide -->
+               <div class="slide slider__fixed--height bg-image--14 poss--relative">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                           <div class="slider__content">
+                              <div class="slider__inner">
+                                 <h1><img src="images/slider/text/3.jpg" alt="slider text img"></h1>
+                                 <div class="slider__video__btn">
+                                    <a class="video-play-button" href="https://www.youtube.com/watch?v=cxB4ACaaR4I"><img src="images/icon/play.png" alt="viveo play icon"></a>
+                                 </div>
+                                 <div class="slider__btn">
+                                    <a class="food__btn" href="#">Read More</a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Single Slide -->
+            </div>
+         </div>
+         <!-- End Slider Area -->
+         <section class="food__contact__form bg--white section-padding--lg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="contact__form__wrap">
+                                <h2>Edit Your Account</h2>
+                                <div class="contact__form__inner">
+                                        <!-- <small><%=message%></small> -->
+                                    <form action="/users/<%=user._id%>?_method=PUT" method="POST">
+                                        <div class="single-contact-form">
+                                            <div class="contact-box name d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
+                                                <input type="text" name="name" value="<%= user.name %>"><br/>
+                                                <input type="email" name="email" value="<%= user.email %>"><br/>
+                                                <input type="password" name="password" value="<%= user.password %>"><br/>
+                                            </div>
+                                        </div>
+                                        <div class="contact-btn">
+                                                <button type="submit">Update Your Profile</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="form-output">
+                                    <p class="form-messege"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-  <main>
-    <h1>Edit Your Profile</h1><br>
 
-    <form action="/users/<%=user._id%>?_method=PUT" method="POST">
-    Name: <input type="text" name="name" value="<%= user.name %>">
-    Email: <input type="text" name="email" value="<%= user.email %>">
-    Password: <input type="password" name="password" value="<%= user.password %>">
-    <button type="submit">Update Your Profile</button>
-  </form>
-
-
-  </main>
-
-</body>
+         <!-- Start Counter Up Area -->
+         <section class="fd__counterup__area bg--theme fanfact--2">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="counter__up__inner d-flex flex-wrap flex-lg-nowrap justify-content-between text-center">
+                        <!-- Start Single Fact -->
+                        <div class="funfact">
+                           <div class="fact__details">
+                              <div class="funfact__count__inner">
+                                 <div class="fact__icon">
+                                    <img src="../images/icon/flat-icon/4.png" alt="flat icon">
+                                 </div>
+                                 <div class="fact__count ">
+                                    <span class="count">2456</span>
+                                 </div>
+                              </div>
+                              <div class="fact__title">
+                                 <h2>Food </h2>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- End Single Fact -->
+                        <!-- Start Single Fact -->
+                        <div class="funfact">
+                           <div class="fact__details">
+                              <div class="funfact__count__inner">
+                                 <div class="fact__icon">
+                                    <img src="../images/icon/flat-icon/5.png" alt="flat icon">
+                                 </div>
+                                 <div class="fact__count ">
+                                    <span class="count">2456</span>
+                                 </div>
+                              </div>
+                              <div class="fact__title">
+                                 <h2>Chef </h2>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- End Single Fact -->
+                        <!-- Start Single Fact -->
+                        <div class="funfact">
+                           <div class="fact__details">
+                              <div class="funfact__count__inner">
+                                 <div class="fact__icon">
+                                    <img src="../images/icon/flat-icon/6.png" alt="flat icon">
+                                 </div>
+                                 <div class="fact__count ">
+                                    <span class="count">2456</span>
+                                 </div>
+                              </div>
+                              <div class="fact__title">
+                                 <h2>Menu </h2>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- End Single Fact -->
+                        <!-- Start Single Fact -->
+                        <div class="funfact">
+                           <div class="fact__details">
+                              <div class="funfact__count__inner">
+                                 <div class="fact__icon">
+                                    <img src="../images/icon/flat-icon/7.png" alt="flat icon">
+                                 </div>
+                                 <div class="fact__count ">
+                                    <span class="count">2456</span>
+                                 </div>
+                              </div>
+                              <div class="fact__title">
+                                 <h2>Restaurant </h2>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- End Single Fact -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <!-- End Counter Up Area -->
+         <!-- Start Footer Area -->
+         <footer class="footer__area footer--4">
+            <div class="copyright bg__cat--7">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="copyright__inner">
+                           <div class="cpy__right--left">
+                                <p>@All Right Reserved <a href="https://www.google.com">EatDrinkDen</a></p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </footer>
+         <!-- End Footer Area -->   
+      <!-- //Main wrapper -->
+      <!-- JS Files -->
+      <script src="js/vendor/jquery-3.2.1.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/plugins.js"></script>
+      <script src="js/jquery.yu2fvl.js"></script>
+      <script src="js/active.js"></script>
+   </body>
 </html>
