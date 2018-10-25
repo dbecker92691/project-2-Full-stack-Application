@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<% include ../partials/csshead %>
+    <% include ../partials/csshead %>
 </head>
 <body>
   <header>
     <% include ../partials/navbar %>
   </header>
-
   <main>
     <h1>This is our Reviews Page </h1><br>
-     
   </main>
   <body>
-    <a href='reviews/new'>New Review</a>
     <% for(let i = 0; i < happy.length; i++) { %>
       <ul>
           <li>
@@ -22,9 +19,17 @@
             </a>
           </li>
       </ul>
-   <% } %>
-
-
+    <% } %>
+    <a href='reviews/new'>New Review</a>
+    <% for(let i = 0; i < reviews.length; i++) { %>
+      <ul>
+        <li>
+          <%= reviews[i].user %><br/>
+          <%= reviews[i].restaurant %><br/>
+          <%= reviews[i].body %>
+        </li>
+      </ul>
+    <%}%>
   </body>
 
 </body>

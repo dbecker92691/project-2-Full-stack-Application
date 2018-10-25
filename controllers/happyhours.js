@@ -67,7 +67,7 @@ router.put('/:id',requireLogin, async (req, res) => {
 router.get('/:id',requireLogin, async (req, res) => {
     try{
         const reviews = await Review.find({});
-        const findHappy = await HappyHour.findById(req.params.id).populate('user')
+        const findHappy = await HappyHour.findById(req.params.id).populate('user').populate('reviews')
         res.render('happyhours/show.ejs', {
             happy: findHappy,
             reviews: reviews,

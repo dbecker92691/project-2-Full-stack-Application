@@ -12,8 +12,6 @@ router.get('/',requireLogin, async(req, res) => {
     try{
         const review = await Review.find({});
         const happy = await Happy.find({});
-        // reviews is the data Review is the model
-        // don't send the model send data
         res.render('reviews/index.ejs', {
             happy: happy, 
             reviews: review
@@ -34,9 +32,7 @@ router.get('/new',requireLogin, async(req, res) => {
             review: review,
             user: user
         })
-        console.log(user, "HERE IS OUR USER")
     } catch(err) {
-        console.log(err, "<----- error error error")
         res.send(err)
     }
 });
@@ -50,33 +46,37 @@ router.post('/', async(req, res) => {
             })
         } else {
             const newReview = {
-                //review: req.body.review,
                 happyHour: req.body.happyHour,
                 body: req.body.body,
                 user: req.session.userId
             
             }
-        console.log(newReview, "Here is a new reveiw")
-        await Review.create(newReview)
-        console.log(newReview.happyHour.id, "<---- newReview happy hour ID")
+        const foundHappy = await Happy.findById(req.body.happyHour);
+        const foundUser = await User.findById(req.session.userId);
+        const createdReview = await Review.create(newReview);
+        foundHappy.reviews.push(createdReview._id);
+        foundUser.reviews.push(createdReview._id);
+        await foundHappy.save();
+        await foundUser.save();
         res.redirect('/reviews')
         }   
 
     } catch(err) {
+        console.log(err)
         res.send(err)
     }
 });
 
 
 // /reviews/:id	GET	show
-router.get('/:id',requireLogin, async(req, res) => {
+router.get('/',requireLogin, async(req, res) => {
     try{
-        const reviews = Review.findById(req.params.id)
-        res.render('reviews/show.ejs', {
+        const reviews = await Review.findById(review.body.id).populate('user').populate('happyHours');
+        res.render('/reviews', {
             reviews: reviews
             
         })
-        console.log(reveiw)
+        console.log(reveiw, 'here is our review')
     } catch(err) {
         res.send(err)
     }
