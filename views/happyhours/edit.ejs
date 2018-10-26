@@ -5,9 +5,9 @@
 
 </head>
 <body>
-     <header>
-        <%- include('../partials/navbar') %>
-   </header> 
+    <header>
+        <% include ../partials/navbar %>
+    </header> 
    <main>
         <h1>Edit <%=happy.restaurant%> Info</h1>
             <form action='/happyhours/<%=happy._id%>?_method=PUT' method="POST">
