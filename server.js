@@ -8,7 +8,7 @@ const requireLogin = require('./middleware/requireLogin')
 const authController     = require('./controllers/authcontroller');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const store = new MongoDBStore({
-    uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/eatdrinkden',
     collection: 'mySessions'
 });
 
@@ -40,8 +40,9 @@ store.on('connected', function() {
     store.client; // The underlying MongoClient object from the MongoDB driver
 })
 store.on('error', function(error) {
-    assert.ifError(error);
-    assert.ok(false);
+    // assert.ifError(error);
+    // assert.ok(false);
+    console.log(error)
 });
   
 app.use('/happyhours', HappyHoursController, express.static('public'));
@@ -56,4 +57,5 @@ app.get('/', (req, res) => {
     res.render('index.ejs')
 })
 
-app.listen(3000);
+const port = 3000 || process.env.PORT
+app.listen(port);
