@@ -58,4 +58,4 @@ app.get('/', (req, res) => {
 })
 
 const port = 3000 || process.env.PORT
-app.listen(port);
+app.listen(3000 || process.env.PORT);
